@@ -1,0 +1,2056 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ПримИЖТ — Приморский институт железнодорожного транспорта</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        /* ══════════════════════════════════════
+           RESET & BASE
+           ══════════════════════════════════════ */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1a237e;
+            --primary-light: #283593;
+            --primary-dark: #0d1642;
+            --accent: #e53935;
+            --accent-hover: #c62828;
+            --gold: #f9a825;
+            --gold-light: #fdd835;
+            --bg-light: #f5f5f7;
+            --bg-white: #ffffff;
+            --text-dark: #1a1a2e;
+            --text-medium: #4a4a5a;
+            --text-light: #7a7a8a;
+            --border: #e0e0e6;
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
+            --shadow-md: 0 4px 20px rgba(0,0,0,0.08);
+            --shadow-lg: 0 8px 40px rgba(0,0,0,0.12);
+            --shadow-xl: 0 20px 60px rgba(0,0,0,0.15);
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--text-dark);
+            background: var(--bg-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ══════════════════════════════════════
+           TOP BAR
+           ══════════════════════════════════════ */
+        .top-bar {
+            background: var(--primary-dark);
+            color: rgba(255,255,255,0.8);
+            font-size: 0.8rem;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .top-bar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .top-bar-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .top-bar-left span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .top-bar-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .top-bar a {
+            color: rgba(255,255,255,0.8);
+        }
+
+        .top-bar a:hover {
+            color: var(--gold);
+        }
+
+        .social-mini {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .social-mini a {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .social-mini a:hover {
+            background: var(--accent);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .accessibility-btn {
+            background: rgba(255,255,255,0.1);
+            border: none;
+            color: rgba(255,255,255,0.8);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: inherit;
+        }
+
+        .accessibility-btn:hover {
+            background: rgba(255,255,255,0.2);
+            color: white;
+        }
+
+        /* ══════════════════════════════════════
+           HEADER
+           ══════════════════════════════════════ */
+        .header {
+            background: var(--bg-white);
+            box-shadow: var(--shadow-sm);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .header.scrolled {
+            box-shadow: var(--shadow-md);
+        }
+
+        .header .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 12px;
+            padding-bottom: 12px;
+        }
+
+        .logo-group {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .logo-icon {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 900;
+            font-size: 1.1rem;
+            line-height: 1;
+            text-align: center;
+            flex-shrink: 0;
+            box-shadow: 0 4px 12px rgba(26, 35, 126, 0.3);
+        }
+
+        .logo-text h1 {
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: var(--primary);
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+
+        .logo-text span {
+            font-size: 0.72rem;
+            color: var(--text-light);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        .header-contacts {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .header-phone {
+            text-align: right;
+        }
+
+        .header-phone .label {
+            font-size: 0.7rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-weight: 600;
+        }
+
+        .header-phone .number {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--primary);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .btn-apply {
+            background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+            color: white;
+            padding: 12px 28px;
+            border-radius: var(--radius-xl);
+            font-weight: 700;
+            font-size: 0.85rem;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            box-shadow: 0 4px 15px rgba(229, 57, 53, 0.3);
+            white-space: nowrap;
+        }
+
+        .btn-apply:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(229, 57, 53, 0.4);
+        }
+
+        /* ══════════════════════════════════════
+           NAVIGATION
+           ══════════════════════════════════════ */
+        .nav-bar {
+            background: var(--primary);
+            position: sticky;
+            top: 80px;
+            z-index: 999;
+        }
+
+        .nav-bar .container {
+            display: flex;
+            align-items: stretch;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+
+        .nav-bar .container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .nav-link {
+            color: rgba(255,255,255,0.85);
+            padding: 14px 18px;
+            font-size: 0.82rem;
+            font-weight: 500;
+            white-space: nowrap;
+            position: relative;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 3px;
+            background: var(--gold);
+            border-radius: 3px 3px 0 0;
+            transition: var(--transition);
+        }
+
+        .nav-link:hover {
+            color: white;
+            background: rgba(255,255,255,0.08);
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 60%;
+        }
+
+        .nav-link.active {
+            color: white;
+            background: rgba(255,255,255,0.05);
+        }
+
+        .nav-dropdown {
+            position: relative;
+        }
+
+        .nav-dropdown-arrow {
+            font-size: 0.6rem;
+            transition: var(--transition);
+        }
+
+        .nav-dropdown:hover .nav-dropdown-arrow {
+            transform: rotate(180deg);
+        }
+
+        .nav-dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: var(--bg-white);
+            border-radius: 0 0 var(--radius-md) var(--radius-md);
+            box-shadow: var(--shadow-lg);
+            min-width: 260px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-8px);
+            transition: var(--transition);
+            z-index: 100;
+            overflow: hidden;
+        }
+
+        .nav-dropdown:hover .nav-dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .nav-dropdown-menu a {
+            display: block;
+            padding: 11px 20px;
+            color: var(--text-dark);
+            font-size: 0.82rem;
+            font-weight: 400;
+            border-bottom: 1px solid var(--border);
+            transition: var(--transition);
+        }
+
+        .nav-dropdown-menu a:last-child {
+            border-bottom: none;
+        }
+
+        .nav-dropdown-menu a:hover {
+            background: var(--bg-light);
+            color: var(--primary);
+            padding-left: 26px;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        /* ══════════════════════════════════════
+           HERO SECTION
+           ══════════════════════════════════════ */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 50%, var(--primary-light) 100%);
+            position: relative;
+            overflow: hidden;
+            min-height: 520px;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(ellipse at 20% 50%, rgba(249, 168, 37, 0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(229, 57, 53, 0.08) 0%, transparent 40%);
+        }
+
+        .hero-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0.03;
+            background-image:
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 40px,
+                    rgba(255,255,255,0.5) 40px,
+                    rgba(255,255,255,0.5) 41px
+                ),
+                repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 40px,
+                    rgba(255,255,255,0.5) 40px,
+                    rgba(255,255,255,0.5) 41px
+                );
+        }
+
+        /* Декоративный поезд-линия */
+        .hero-train-line {
+            position: absolute;
+            bottom: 60px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: rgba(255,255,255,0.1);
+        }
+
+        .hero-train-line::before {
+            content: '🚄';
+            position: absolute;
+            font-size: 1.5rem;
+            top: -14px;
+            animation: trainMove 12s linear infinite;
+        }
+
+        @keyframes trainMove {
+            0% { left: -40px; }
+            100% { left: 100%; }
+        }
+
+        .hero .container {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            padding-top: 60px;
+            padding-bottom: 80px;
+        }
+
+        .hero-content {
+            color: white;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.15);
+            padding: 8px 18px;
+            border-radius: var(--radius-xl);
+            font-size: 0.78rem;
+            font-weight: 500;
+            margin-bottom: 24px;
+            color: var(--gold-light);
+        }
+
+        .hero-badge-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--gold);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.5); }
+        }
+
+        .hero h2 {
+            font-size: 2.8rem;
+            font-weight: 900;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            margin-bottom: 20px;
+        }
+
+        .hero h2 .highlight {
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.05rem;
+            color: rgba(255,255,255,0.7);
+            line-height: 1.7;
+            margin-bottom: 36px;
+            max-width: 500px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .btn-hero-primary {
+            background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+            color: white;
+            padding: 16px 36px;
+            border-radius: var(--radius-xl);
+            font-weight: 700;
+            font-size: 0.95rem;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 8px 25px rgba(229, 57, 53, 0.35);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-hero-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(229, 57, 53, 0.45);
+        }
+
+        .btn-hero-secondary {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.25);
+            color: white;
+            padding: 16px 36px;
+            border-radius: var(--radius-xl);
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-hero-secondary:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-3px);
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .stat-card {
+            background: rgba(255,255,255,0.08);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: var(--radius-lg);
+            padding: 28px 24px;
+            text-align: center;
+            color: white;
+            transition: var(--transition);
+        }
+
+        .stat-card:hover {
+            background: rgba(255,255,255,0.12);
+            transform: translateY(-4px);
+            border-color: rgba(255,255,255,0.2);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 0.82rem;
+            color: rgba(255,255,255,0.6);
+            font-weight: 400;
+            line-height: 1.4;
+        }
+
+        /* ══════════════════════════════════════
+           ANNOUNCEMENTS TICKER
+           ══════════════════════════════════════ */
+        .ticker {
+            background: var(--gold);
+            color: var(--primary-dark);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .ticker-inner {
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+        }
+
+        .ticker-label {
+            background: var(--primary-dark);
+            color: var(--gold);
+            padding: 6px 18px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            white-space: nowrap;
+            border-radius: var(--radius-sm);
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+
+        .ticker-content {
+            display: flex;
+            animation: ticker 30s linear infinite;
+            gap: 40px;
+        }
+
+        .ticker-content span {
+            white-space: nowrap;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .ticker-content span::before {
+            content: '•';
+            color: var(--accent);
+            font-size: 1.2rem;
+        }
+
+        @keyframes ticker {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* ══════════════════════════════════════
+           SECTION COMMON
+           ══════════════════════════════════════ */
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(26, 35, 126, 0.06);
+            color: var(--primary);
+            padding: 8px 18px;
+            border-radius: var(--radius-xl);
+            font-size: 0.78rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            letter-spacing: -0.02em;
+            margin-bottom: 12px;
+        }
+
+        .section-subtitle {
+            font-size: 1.05rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* ══════════════════════════════════════
+           NEWS SECTION
+           ══════════════════════════════════════ */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+        }
+
+        .news-card {
+            background: var(--bg-white);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            border: 1px solid var(--border);
+        }
+
+        .news-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
+            border-color: transparent;
+        }
+
+        .news-card.featured {
+            grid-column: 1 / -1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .news-img {
+            height: 220px;
+            background: linear-gradient(135deg, var(--primary-light), var(--primary));
+            position: relative;
+            overflow: hidden;
+        }
+
+        .news-card.featured .news-img {
+            height: 100%;
+            min-height: 320px;
+        }
+
+        .news-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .news-card:hover .news-img img {
+            transform: scale(1.05);
+        }
+
+        .news-img-overlay {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            display: flex;
+            gap: 8px;
+        }
+
+        .news-category {
+            background: var(--accent);
+            color: white;
+            padding: 5px 14px;
+            border-radius: var(--radius-xl);
+            font-size: 0.72rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .news-body {
+            padding: 24px;
+        }
+
+        .news-meta {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 14px;
+        }
+
+        .news-date {
+            font-size: 0.78rem;
+            color: var(--text-light);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .news-views {
+            font-size: 0.78rem;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .news-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            line-height: 1.4;
+            margin-bottom: 12px;
+            letter-spacing: -0.01em;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .news-card.featured .news-title {
+            font-size: 1.5rem;
+        }
+
+        .news-excerpt {
+            font-size: 0.88rem;
+            color: var(--text-medium);
+            line-height: 1.6;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .news-readmore {
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.85rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: var(--transition);
+        }
+
+        .news-readmore:hover {
+            color: var(--accent);
+            gap: 10px;
+        }
+
+        .btn-all-news {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--primary);
+            color: white;
+            padding: 14px 32px;
+            border-radius: var(--radius-xl);
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-top: 40px;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-all-news:hover {
+            background: var(--primary-light);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ══════════════════════════════════════
+           SPECIALTIES / PROGRAMS
+           ══════════════════════════════════════ */
+        .programs-section {
+            background: var(--primary-dark);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .programs-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(ellipse at 10% 90%, rgba(249, 168, 37, 0.08) 0%, transparent 40%),
+                radial-gradient(ellipse at 90% 10%, rgba(229, 57, 53, 0.06) 0%, transparent 40%);
+        }
+
+        .programs-section .section-tag {
+            background: rgba(255,255,255,0.1);
+            color: var(--gold);
+        }
+
+        .programs-section .section-title {
+            color: white;
+        }
+
+        .programs-section .section-subtitle {
+            color: rgba(255,255,255,0.5);
+        }
+
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .program-card {
+            background: rgba(255,255,255,0.06);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: var(--radius-lg);
+            padding: 32px 24px;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .program-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold), var(--accent));
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .program-card:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: rgba(255,255,255,0.2);
+            transform: translateY(-6px);
+        }
+
+        .program-card:hover::before {
+            opacity: 1;
+        }
+
+        .program-icon {
+            width: 52px;
+            height: 52px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .program-card h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+
+        .program-card p {
+            font-size: 0.82rem;
+            color: rgba(255,255,255,0.5);
+            line-height: 1.5;
+            margin-bottom: 16px;
+        }
+
+        .program-duration {
+            font-size: 0.75rem;
+            color: var(--gold);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* ══════════════════════════════════════
+           ADVANTAGES
+           ══════════════════════════════════════ */
+        .advantages-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+        }
+
+        .advantage-card {
+            background: var(--bg-white);
+            border-radius: var(--radius-lg);
+            padding: 36px 28px;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .advantage-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary);
+        }
+
+        .advantage-icon {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, rgba(26,35,126,0.08), rgba(26,35,126,0.04));
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 1.8rem;
+        }
+
+        .advantage-card h3 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--text-dark);
+        }
+
+        .advantage-card p {
+            font-size: 0.88rem;
+            color: var(--text-medium);
+            line-height: 1.6;
+        }
+
+        /* ══════════════════════════════════════
+           CTA SECTION
+           ══════════════════════════════════════ */
+        .cta-section {
+            background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+            padding: 70px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 500px;
+            height: 500px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 50%;
+        }
+
+        .cta-section::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 300px;
+            height: 300px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 50%;
+        }
+
+        .cta-content {
+            text-align: center;
+            color: white;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-content h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+        }
+
+        .cta-content p {
+            font-size: 1.05rem;
+            opacity: 0.85;
+            margin-bottom: 32px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .btn-cta-primary {
+            background: white;
+            color: var(--accent);
+            padding: 16px 36px;
+            border-radius: var(--radius-xl);
+            font-weight: 700;
+            font-size: 0.95rem;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+
+        .btn-cta-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+
+        .btn-cta-secondary {
+            background: transparent;
+            color: white;
+            padding: 16px 36px;
+            border-radius: var(--radius-xl);
+            font-weight: 600;
+            font-size: 0.95rem;
+            border: 2px solid rgba(255,255,255,0.4);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn-cta-secondary:hover {
+            border-color: white;
+            background: rgba(255,255,255,0.1);
+        }
+
+        /* ══════════════════════════════════════
+           PARTNERS
+           ══════════════════════════════════════ */
+        .partners-section {
+            background: var(--bg-white);
+        }
+
+        .partners-grid {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            opacity: 0.5;
+            transition: var(--transition);
+        }
+
+        .partners-grid:hover {
+            opacity: 0.8;
+        }
+
+        .partner-logo {
+            height: 45px;
+            filter: grayscale(100%);
+            transition: var(--transition);
+            opacity: 0.7;
+        }
+
+        .partner-logo:hover {
+            filter: grayscale(0%);
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        /* ══════════════════════════════════════
+           FOOTER
+           ══════════════════════════════════════ */
+        .footer {
+            background: var(--primary-dark);
+            color: rgba(255,255,255,0.7);
+            padding: 60px 0 0;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr;
+            gap: 40px;
+            padding-bottom: 50px;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .footer-brand .logo-group {
+            margin-bottom: 20px;
+        }
+
+        .footer-brand .logo-icon {
+            width: 48px;
+            height: 48px;
+            font-size: 0.9rem;
+        }
+
+        .footer-brand .logo-text h1 {
+            color: white;
+            font-size: 1rem;
+        }
+
+        .footer-brand .logo-text span {
+            color: rgba(255,255,255,0.4);
+        }
+
+        .footer-brand p {
+            font-size: 0.85rem;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            color: rgba(255,255,255,0.5);
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 10px;
+        }
+
+        .footer-social a {
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-sm);
+            background: rgba(255,255,255,0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255,255,255,0.6);
+            font-size: 0.85rem;
+            font-weight: 700;
+            transition: var(--transition);
+        }
+
+        .footer-social a:hover {
+            background: var(--accent);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .footer-col h4 {
+            color: white;
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col li {
+            margin-bottom: 12px;
+        }
+
+        .footer-col a {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.5);
+            transition: var(--transition);
+        }
+
+        .footer-col a:hover {
+            color: var(--gold);
+            padding-left: 6px;
+        }
+
+        .footer-contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .footer-contact-icon {
+            width: 36px;
+            height: 36px;
+            background: rgba(255,255,255,0.06);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .footer-contact-text {
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+
+        .footer-contact-text strong {
+            color: white;
+            font-weight: 600;
+        }
+
+        .footer-bottom {
+            padding: 24px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .footer-bottom-text {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.35);
+        }
+
+        .footer-bottom-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .footer-bottom-links a {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.35);
+        }
+
+        .footer-bottom-links a:hover {
+            color: rgba(255,255,255,0.7);
+        }
+
+        /* ══════════════════════════════════════
+           SCROLL TO TOP
+           ══════════════════════════════════════ */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 48px;
+            height: 48px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .scroll-top:hover {
+            background: var(--accent);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* ══════════════════════════════════════
+           RESPONSIVE
+           ══════════════════════════════════════ */
+        @media (max-width: 1024px) {
+            .hero .container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .hero-stats {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            .hero h2 {
+                font-size: 2.2rem;
+            }
+
+            .programs-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .news-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .news-card.featured {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .top-bar {
+                display: none;
+            }
+
+            .header .container {
+                flex-wrap: wrap;
+                gap: 12px;
+            }
+
+            .header-contacts {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .nav-bar {
+                top: 0;
+            }
+
+            .nav-bar .container {
+                flex-wrap: nowrap;
+            }
+
+            .hero {
+                min-height: 400px;
+            }
+
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+
+            .hero-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .btn-hero-primary,
+            .btn-hero-secondary {
+                text-align: center;
+                justify-content: center;
+            }
+
+            .section {
+                padding: 50px 0;
+            }
+
+            .section-title {
+                font-size: 1.6rem;
+            }
+
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .news-card.featured {
+                grid-column: 1;
+            }
+
+            .programs-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .advantages-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-content h2 {
+                font-size: 1.6rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 16px;
+            }
+
+            .hero h2 {
+                font-size: 1.5rem;
+            }
+
+            .stat-number {
+                font-size: 1.8rem;
+            }
+
+            .news-body {
+                padding: 18px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ═══════════ TOP BAR ═══════════ -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="top-bar-left">
+                <span>📍 г. Уссурийск, ул. Тургенева, 3</span>
+                <span>📧 info@primizt.ru</span>
+            </div>
+            <div class="top-bar-right">
+                <div class="social-mini">
+                    <a href="https://vk.com/club221016462" title="ВКонтакте">VK</a>
+                    <a href="https://t.me/primigt1" title="Telegram">TG</a>
+                    <a href="https://rutube.ru/channel/29105887/" title="RuTube">RT</a>
+                </div>
+                <button class="accessibility-btn">👁 Версия для слабовидящих</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════ HEADER ═══════════ -->
+    <header class="header" id="header">
+        <div class="container">
+            <a href="/" class="logo-group">
+                <div class="logo-icon">Прим<br>ИЖТ</div>
+                <div class="logo-text">
+                    <h1>ПримИЖТ</h1>
+                    <span>Приморский институт железнодорожного транспорта</span>
+                </div>
+            </a>
+            <div class="header-contacts">
+                <div class="header-phone">
+                    <div class="label">Приёмная комиссия</div>
+                    <div class="number">8-924-256-92-25</div>
+                </div>
+                <a href="/abitur" class="btn-apply">Подать заявку</a>
+            </div>
+            <button class="mobile-menu-btn" onclick="document.querySelector('.nav-bar').classList.toggle('open')">☰</button>
+        </div>
+    </header>
+
+    <!-- ═══════════ NAVIGATION ═══════════ -->
+    <nav class="nav-bar">
+        <div class="container">
+            <a href="/" class="nav-link active">Главная</a>
+
+            <div class="nav-dropdown">
+                <a href="/home" class="nav-link">
+                    Об институте <span class="nav-dropdown-arrow">▼</span>
+                </a>
+                <div class="nav-dropdown-menu">
+                    <a href="/home/administratsiya">Администрация</a>
+                    <a href="/home/kontakty">Контакты</a>
+                    <a href="/home/istoriya">История</a>
+                    <a href="/home/otchjoty">Отчёты</a>
+                    <a href="/home/protivodejstvie-korruptsii">Противодействие коррупции</a>
+                </div>
+            </div>
+
+            <a href="/novosti" class="nav-link">Новости</a>
+
+            <div class="nav-dropdown">
+                <a href="/studentu" class="nav-link">
+                    Студенту <span class="nav-dropdown-arrow">▼</span>
+                </a>
+                <div class="nav-dropdown-menu">
+                    <a href="/studentu/raspisanie-zanyatij">Расписание занятий</a>
+                    <a href="/studentu/rejting-vo">Рейтинг ФВО</a>
+                    <a href="/studentu/rejting-spo">Рейтинг СПО</a>
+                    <a href="/studentu/platnye-uslugi">Платные услуги</a>
+                    <a href="/studentu/obrazovatelnye-resursy">Образовательные ресурсы</a>
+                    <a href="/studentu/sportivnyj-klub">Спортивный клуб</a>
+                    <a href="/studentu/professionaly">Профессионалы</a>
+                </div>
+            </div>
+
+            <a href="/abitur" class="nav-link">Абитуриенту</a>
+
+            <div class="nav-dropdown">
+                <a href="/nauka" class="nav-link">
+                    Наука <span class="nav-dropdown-arrow">▼</span>
+                </a>
+                <div class="nav-dropdown-menu">
+                    <a href="/nauka/nauchno-issledovatelskaya-deyatelnost">Научная деятельность</a>
+                    <a href="/nauka/konferentsii">Конференции</a>
+                    <a href="/nauka/studencheskoe-nauchnoe-soobshchestvo">Студ. научное сообщество</a>
+                </div>
+            </div>
+
+            <a href="/biblioteka" class="nav-link">Библиотека</a>
+            <a href="/centr-karery" class="nav-link">Центр карьеры</a>
+            <a href="/kurs" class="nav-link">Доп. образование</a>
+
+            <div class="nav-dropdown">
+                <a href="/sveden" class="nav-link">
+                    Сведения <span class="nav-dropdown-arrow">▼</span>
+                </a>
+                <div class="nav-dropdown-menu">
+                    <a href="/sveden/common/">Основные сведения</a>
+                    <a href="/sveden/struct">Структура</a>
+                    <a href="/sveden/document">Документы</a>
+                    <a href="/sveden/education">Образование</a>
+                    <a href="/sveden/employees">Педагогический состав</a>
+                    <a href="/sveden/objects/">Материально-техническое обеспечение</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ═══════════ HERO ═══════════ -->
+    <section class="hero">
+        <div class="hero-pattern"></div>
+        <div class="hero-train-line"></div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span class="hero-badge-dot"></span>
+                    Приём документов 2026 открыт
+                </div>
+                <h2>
+                    Твой путь в<br>
+                    <span class="highlight">железнодорожную<br>отрасль</span>
+                    начинается здесь
+                </h2>
+                <p>
+                    Приморский институт железнодорожного транспорта — филиал ДВГУПС.
+                    Качественное образование, современная база, гарантированное трудоустройство в РЖД.
+                </p>
+                <div class="hero-buttons">
+                    <a href="/abitur" class="btn-hero-primary">
+                        Поступить в 2026 →
+                    </a>
+                    <a href="/home/istoriya" class="btn-hero-secondary">
+                        Узнать больше
+                    </a>
+                </div>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-card">
+                    <div class="stat-number">65+</div>
+                    <div class="stat-label">лет подготовки<br>специалистов</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">15</div>
+                    <div class="stat-label">направлений<br>обучения</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">98%</div>
+                    <div class="stat-label">выпускников<br>трудоустроены</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">2K+</div>
+                    <div class="stat-label">студентов<br>обучаются</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════ TICKER ═══════════ -->
+    <div class="ticker">
+        <div class="container">
+            <div class="ticker-inner">
+                <span class="ticker-label">📢 Объявления</span>
+                <div class="ticker-content">
+                    <span>Экскурсии для школьников — запись открыта</span>
+                    <span>Городские олимпиады по математике и физике — итоги 2026</span>
+                    <span>Региональный этап «Профессионалы-2026» прошёл на площадках ПримИЖТ</span>
+                    <span>Приёмная комиссия работает ежедневно с 9:00 до 17:00</span>
+                    <span>Экскурсии для школьников — запись открыта</span>
+                    <span>Городские олимпиады по математике и физике — итоги 2026</span>
+                    <span>Региональный этап «Профессионалы-2026» прошёл на площадках ПримИЖТ</span>
+                    <span>Приёмная комиссия работает ежедневно с 9:00 до 17:00</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════ NEWS ═══════════ -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">📰 Лента событий</div>
+                <h2 class="section-title">Главные новости</h2>
+                <p class="section-subtitle">Последние события из жизни института</p>
+            </div>
+
+            <div class="news-grid">
+                <!-- Featured -->
+                <article class="news-card featured">
+                    <div class="news-img">
+                        <div style="width:100%;height:100%;background:linear-gradient(135deg,#1a237e,#283593);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.15);font-size:4rem;">🏆</div>
+                        <div class="news-img-overlay">
+                            <span class="news-category">Важное</span>
+                        </div>
+                    </div>
+                    <div class="news-body">
+                        <div class="news-meta">
+                            <span class="news-date">📅 13 марта 2026</span>
+                            <span class="news-views">👁 2</span>
+                        </div>
+                        <h3 class="news-title">Итоги городских предметных олимпиад по математике и физике для школьников (2026)</h3>
+                        <p class="news-excerpt">28 февраля и 1 марта 2026 г. в Приморском институте железнодорожного транспорта – филиале ДВГУПС в г. Уссурийске прошли Городские олимпиады среди учащихся школ города. Мероприятие собрало десятки талантливых участников.</p>
+                        <a href="/component/k2/item/621-1832" class="news-readmore">Читать далее →</a>
+                    </div>
+                </article>
+
+                <!-- Card 2 -->
+                <article class="news-card">
+                    <div class="news-img">
+                        <div style="width:100%;height:100%;background:linear-gradient(135deg,#c62828,#e53935);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.15);font-size:3rem;">🎖</div>
+                        <div class="news-img-overlay">
+                            <span class="news-category">Патриотизм</span>
+                        </div>
+                    </div>
+                    <div class="news-body">
+                        <div class="news-meta">
+                            <span class="news-date">📅 24 февраля 2026</span>
+                            <span class="news-views">👁 20</span>
+                        </div>
+                        <h3 class="news-title">Патриотическое мероприятие «Приморцы — Герои России»</h3>
+                        <p class="news-excerpt">20 февраля 2026 года активисты Молодой гвардии организовали яркое патриотическое мероприятие для первокурсников.</p>
+                        <a href="/component/k2/item/620-1821-2" class="news-readmore">Читать далее →</a>
+                    </div>
+                </article>
+
+                <!-- Card 3 -->
+                <article class="news-card">
+                    <div class="news-img">
+                        <div style="width:100%;height:100%;background:linear-gradient(135deg,#f9a825,#fdd835);display:flex;align-items:center;justify-content:center;color:rgba(0,0,0,0.1);font-size:3rem;">⚙️</div>
+                        <div class="news-img-overlay">
+                            <span class="news-category">Конкурс</span>
+                        </div>
+                    </div>
+                    <div class="news-body">
+                        <div class="news-meta">
+                            <span class="news-date">📅 24 февраля 2026</span>
+                            <span class="news-views">👁 30</span>
+                        </div>
+                        <h3 class="news-title">«Профессионалы-2026» — региональный этап</h3>
+                        <p class="news-excerpt">На площадках института прошёл региональный этап Всероссийского чемпионатного движения по профессиональному мастерству.</p>
+                        <a href="/component/k2/item/619-1821-1" class="news-readmore">Читать далее →</a>
+                    </div>
+                </article>
+
+                <!-- Card 4 -->
+                <article class="news-card">
+                    <div class="news-img">
+                        <div style="width:100%;height:100%;background:linear-gradient(135deg,#1565c0,#42a5f5);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.15);font-size:3rem;">🤝</div>
+                        <div class="news-img-overlay">
+                            <span class="news-category">Событие</span>
+                        </div>
+                    </div>
+                    <div class="news-body">
+                        <div class="news-meta">
+                            <span class="news-date">📅 23 января 2026</span>
+                            <span class="news-views">👁 38</span>
+                        </div>
+                        <h3 class="news-title">ПримИЖТ заключил соглашение с «Молодой Гвардией»</h3>
+                        <p class="news-excerpt">Состоялось важное событие для студентов и преподавателей Приморского института.</p>
+                        <a href="/component/k2/item/615-1807" class="news-readmore">Читать далее →</a>
+                    </div>
+                </article>
+
+                <!-- Card 5 -->
+                <article class="news-card">
+                    <div class="news-img">
+                        <div style="width:100%;height:100%;background:linear-gradient(135deg,#2e7d32,#66bb6a);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.15);font-size:3rem;">🌏</div>
+                        <div class="news-img-overlay">
+                            <span class="news-category">Международное</span>
+                        </div>
+                    </div>
+                    <div class="news-body">
+                        <div class="news-meta">
+                            <span class="news-date">📅 27 ноября 2025</span>
+                            <span class="news-views">👁 47</span>
+                        </div>
+                        <h3 class="news-title">Телемост «Дружба железных дорог» с международным участием</h3>
+                        <p class="news-excerpt">20 ноября 2025 года в России отмечается День работника транспорта.</p>
+                        <a href="/component/k2/item/613-1765" class="news-readmore">Читать далее →</a>
+                    </div>
+                </article>
+            </div>
+
+            <div style="text-align: center;">
+                <a href="/novosti" class="btn-all-news">Все новости →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════ PROGRAMS ═══════════ -->
+    <section class="section programs-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">🎓 Направления подготовки</div>
+                <h2 class="section-title">Выбери свою профессию</h2>
+                <p class="section-subtitle">Программы среднего и высшего профессионального образования</p>
+            </div>
+
+            <div class="programs-grid">
+                <div class="program-card">
+                    <div class="program-icon">🚂</div>
+                    <h3>Помощник машиниста локомотива</h3>
+                    <p>Управление тяговым подвижным составом на железнодорожном транспорте</p>
+                    <span class="program-duration">⏱ 3 года 10 мес. (СПО)</span>
+                </div>
+                <div class="program-card">
+                    <div class="program-icon">🔧</div>
+                    <h3>Техническая эксплуатация подвижного состава</h3>
+                    <p>Обслуживание и ремонт локомотивов, вагонов и другого подвижного состава</p>
+                    <span class="program-duration">⏱ 3 года 10 мес. (СПО)</span>
+                </div>
+                <div class="program-card">
+                    <div class="program-icon">🛤</div>
+                    <h3>Строительство железных дорог</h3>
+                    <p>Проектирование, строительство и содержание путей и путевого хозяйства</p>
+                    <span class="program-duration">⏱ 3 года 10 мес. (СПО)</span>
+                </div>
+                <div class="program-card">
+                    <div class="program-icon">💡</div>
+                    <h3>Электроснабжение на ж/д транспорте</h3>
+                    <p>Системы электроснабжения, контактные сети и устройства СЦБ</p>
+                    <span class="program-duration">⏱ 3 года 10 мес. (СПО)</span>
+                </div>
+                <div class="program-card">
+                    <div class="program-icon">💻</div>
+                    <h3>Автоматика и телемеханика</h3>
+                    <p>Системы автоматизации и управления движением поездов</p>
+                    <span class="program-duration">⏱ 3 года 10 мес. (СПО)</span>
+                </div>
+                <div class="program-card">
+                    <div class="program-icon">📦</div>
+                    <h3>Организация перевозок</h3>
+                    <p>Логистика, управление грузовыми и пассажирскими перевозками</p>
+                    <span class="program-duration">⏱ 3 года 10 мес. (СПО)</span>
+                </div>
+                <div class="program-card">
+                    <div class="program-icon">🏗</div>
+                    <h3>Строительство (ВО)</h3>
+                    <p>Высшее образование — бакалавриат в сфере транспортного строительства</p>
+                    <span class="program-duration">⏱ 4 года (бакалавриат)</span>
+                </div>
+                <div class="program-card">
+                    <div class="program-icon">📊</div>
+                    <h3>Экономика и управление</h3>
+                    <p>Экономика, менеджмент и управление на транспорте</p>
+                    <span class="program-duration">⏱ 4 года (бакалавриат)</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════ ADVANTAGES ═══════════ -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">✨ Преимущества</div>
+                <h2 class="section-title">Почему выбирают ПримИЖТ</h2>
+                <p class="section-subtitle">Мы готовим востребованных специалистов для железнодорожной отрасли</p>
+            </div>
+
+            <div class="advantages-grid">
+                <div class="advantage-card">
+                    <div class="advantage-icon">🎯</div>
+                    <h3>Гарантированное трудоустройство</h3>
+                    <p>98% выпускников получают распределение и работу в системе ОАО «РЖД» сразу после выпуска</p>
+                </div>
+                <div class="advantage-card">
+                    <div class="advantage-icon">🏢</div>
+                    <h3>Современная база</h3>
+                    <p>Учебные лаборатории, тренажёры, полигоны — всё для практической подготовки будущих специалистов</p>
+                </div>
+                <div class="advantage-card">
+                    <div class="advantage-icon">💰</div>
+                    <h3>Бюджетные места</h3>
+                    <p>Большое количество бюджетных мест на все направления подготовки. Стипендия и соц. поддержка</p>
+                </div>
+                <div class="advantage-card">
+                    <div class="advantage-icon">🏠</div>
+                    <h3>Общежитие</h3>
+                    <p>Комфортное общежитие для иногородних студентов с доступной стоимостью проживания</p>
+                </div>
+                <div class="advantage-card">
+                    <div class="advantage-icon">🏆</div>
+                    <h3>Конкурсы и олимпиады</h3>
+                    <p>Участие в «Профессионалы», Всероссийских олимпиадах, спортивных и творческих мероприятиях</p>
+                </div>
+                <div class="advantage-card">
+                    <div class="advantage-icon">🌐</div>
+                    <h3>Филиал ДВГУПС</h3>
+                    <p>Диплом государственного университета. Возможность продолжить образование в ДВГУПС (Хабаровск)</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════ CTA ═══════════ -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Начни свой путь уже сегодня!</h2>
+                <p>Приёмная комиссия работает. Подай заявку онлайн или приходи к нам лично — мы ответим на все вопросы.</p>
+                <div class="cta-buttons">
+                    <a href="/abitur" class="btn-cta-primary">Подать документы</a>
+                    <a href="tel:89242569225" class="btn-cta-secondary">📞 8-924-256-92-25</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════ PARTNERS ═══════════ -->
+    <section class="section partners-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">🤝 Партнёры</div>
+                <h2 class="section-title">Нам доверяют</h2>
+            </div>
+            <div class="partners-grid">
+                <!-- Вместо картинок — текстовые плейсхолдеры -->
+                <div style="padding:15px 25px;border:1px solid #ddd;border-radius:8px;font-weight:600;color:#555;font-size:0.85rem;">ОАО «РЖД»</div>
+                <div style="padding:15px 25px;border:1px solid #ddd;border-radius:8px;font-weight:600;color:#555;font-size:0.85rem;">ДВГУПС</div>
+                <div style="padding:15px 25px;border:1px solid #ddd;border-radius:8px;font-weight:600;color:#555;font-size:0.85rem;">Минтранс РФ</div>
+                <div style="padding:15px 25px;border:1px solid #ddd;border-radius:8px;font-weight:600;color:#555;font-size:0.85rem;">Росжелдор</div>
+                <div style="padding:15px 25px;border:1px solid #ddd;border-radius:8px;font-weight:600;color:#555;font-size:0.85rem;">Минобрнауки</div>
+                <div style="padding:15px 25px;border:1px solid #ddd;border-radius:8px;font-weight:600;color:#555;font-size:0.85rem;">ASKITT</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════ FOOTER ═══════════ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="logo-group">
+                        <div class="logo-icon">Прим<br>ИЖТ</div>
+                        <div class="logo-text">
+                            <h1>ПримИЖТ</h1>
+                            <span>Филиал ДВГУПС в г. Уссурийске</span>
+                        </div>
+                    </div>
+                    <p>Приморский институт железнодорожного транспорта — филиал Дальневосточного государственного университета путей сообщения. Готовим специалистов для железнодорожной отрасли с 1958 года.</p>
+                    <div class="footer-social">
+                        <a href="https://vk.com/club221016462" title="VK">VK</a>
+                        <a href="https://t.me/primigt1" title="Telegram">TG</a>
+                        <a href="https://rutube.ru/channel/29105887/" title="RuTube">RT</a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Навигация</h4>
+                    <ul>
+                        <li><a href="/">Главная</a></li>
+                        <li><a href="/novosti">Новости</a></li>
+                        <li><a href="/abitur">Абитуриенту</a></li>
+                        <li><a href="/studentu">Студенту</a></li>
+                        <li><a href="/biblioteka">Библиотека</a></li>
+                        <li><a href="/centr-karery">Центр карьеры</a></li>
+                        <li><a href="/vakansii">Вакансии</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Документы</h4>
+                    <ul>
+                        <li><a href="/sveden">Сведения об организации</a></li>
+                        <li><a href="/sveden/document">Документы</a></li>
+                        <li><a href="/sveden/education">Образование</a></li>
+                        <li><a href="/sveden/employees">Педагогический состав</a></li>
+                        <li><a href="/feedback">Обращение граждан</a></li>
+                        <li><a href="/faq">Часто задаваемые вопросы</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Контакты</h4>
+                    <div class="footer-contact-item">
+                        <div class="footer-contact-icon">📍</div>
+                        <div class="footer-contact-text">
+                            <strong>Адрес</strong><br>
+                            г. Уссурийск,<br>ул. Тургенева, 3
+                        </div>
+                    </div>
+                    <div class="footer-contact-item">
+                        <div class="footer-contact-icon">📞</div>
+                        <div class="footer-contact-text">
+                            <strong>Приёмная директора</strong><br>
+                            8 (4234) 25-20-40
+                        </div>
+                    </div>
+                    <div class="footer-contact-item">
+                        <div class="footer-contact-icon">📱</div>
+                        <div class="footer-contact-text">
+                            <strong>Приёмная комиссия</strong><br>
+                            8-924-256-92-25<br>
+                            8-4234-24-93-05<br>
+                            8-924-246-93-04
+                        </div>
+                    </div>
+                    <div class="footer-contact-item">
+                        <div class="footer-contact-icon">✉️</div>
+                        <div class="footer-contact-text">
+                            <strong>Email</strong><br>
+                            <a href="mailto:info@primizt.ru" style="color:var(--gold);">info@primizt.ru</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <span class="footer-bottom-text">© 2025 Приморский институт железнодорожного транспорта. Все права защищены.</span>
+                <div class="footer-bottom-links">
+                    <a href="/?template=accessibility">Версия для слабовидящих</a>
+                    <a href="/sveden">Сведения об образовательной организации</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ═══════════ SCROLL TO TOP ═══════════ -->
+    <button class="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Наверх">↑</button>
+
+    <!-- ═══════════ SCRIPTS ═══════════ -->
+    <script>
+        // Header shadow on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.news-card, .program-card, .advantage-card, .stat-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+            observer.observe(el);
+        });
+    </script>
+
+</body>
+</html>
