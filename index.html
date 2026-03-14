@@ -627,43 +627,6 @@
                 repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(255,255,255,0.5) 40px, rgba(255,255,255,0.5) 41px);
         }
 
-        .hero-train-line {
-            position: absolute;
-            bottom: 50px;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: rgba(255,255,255,0.08);
-        }
-
-        .hero-train-line::before {
-            content: '';
-            position: absolute;
-            width: 40px;
-            height: 16px;
-            top: -7px;
-            background: rgba(255,255,255,0.15);
-            border-radius: 4px 4px 2px 2px;
-            animation: trainMove 15s linear infinite;
-        }
-
-        .hero-train-line::after {
-            content: '';
-            position: absolute;
-            width: 60px;
-            height: 4px;
-            top: -1px;
-            background: rgba(249, 168, 37, 0.3);
-            border-radius: 2px;
-            animation: trainMove 15s linear infinite;
-            animation-delay: -0.1s;
-        }
-
-        @keyframes trainMove {
-            0% { left: -80px; }
-            100% { left: calc(100% + 80px); }
-        }
-
         .hero .container {
             position: relative;
             z-index: 2;
@@ -2000,7 +1963,6 @@
     <!-- ═══════════ HERO ═══════════ -->
     <section class="hero">
         <div class="hero-pattern"></div>
-        <div class="hero-train-line"></div>
         <div class="container">
             <div class="hero-content">
                 <div class="hero-badge">
