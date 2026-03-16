@@ -254,11 +254,9 @@
         }
 
         .logo-primizt {
-            height: 52px;
+            height: 64px;
             width: auto;
-            filter: brightness(0) invert(1);
-        }
-
+        }  
         .logo-divider {
             width: 1px;
             height: 40px;
@@ -266,7 +264,7 @@
         }
 
         .logo-spo {
-            height: 44px;
+            height: 56px;
             width: auto;
             /* Логотип уже белый, на тёмном фоне виден */
         }
@@ -607,6 +605,7 @@
             content: '';
             position: absolute;
             inset: 0;
+            pointer-events: none;
             background:
                 radial-gradient(ellipse at 20% 60%, rgba(255,119,0,0.1) 0%, transparent 50%),
                 radial-gradient(ellipse at 80% 20%, rgba(142,89,255,0.1) 0%, transparent 40%);
@@ -1049,7 +1048,8 @@
             background:
                 radial-gradient(ellipse at 10% 90%, rgba(255,119,0,0.08) 0%, transparent 40%),
                 radial-gradient(ellipse at 90% 10%, rgba(142,89,255,0.08) 0%, transparent 40%);
-        }
+            pointer-events: none;
+        }  
 
         .programs-section .section-tag {
             background: rgba(255,255,255,0.08);
@@ -1244,6 +1244,7 @@
         .cta-section::before {
             content: '';
             position: absolute;
+            pointer-events: none;
             top: -50%; right: -15%;
             width: 400px; height: 400px;
             background: rgba(255,255,255,0.04);
@@ -1373,8 +1374,7 @@
         }
 
         .footer-brand .footer-logo {
-            height: 40px;
-            filter: brightness(0) invert(1);
+            height: 48px;
         }
 
         .footer-social {
@@ -1538,10 +1538,13 @@
             .mobile-menu-btn { display: flex; }
             .mobile-nav-overlay { display: block; }
             .nav-bar { display: none; }
-            .logo-primizt { height: 38px; }
-            .logo-spo { height: 32px; }
-            .logo-divider { height: 30px; }
-            .btn-apply { display: none; }
+            .logo-primizt { height: 44px; }
+            .logo-spo { height: 38px; }
+            .logo-divider { height: 34px; }
+            .btn-apply {
+                padding: 8px 16px;
+                font-size: 0.72rem;
+         }
 
             .hero { min-height: auto; }
             .hero .container { padding-top: 32px; padding-bottom: 50px; }
@@ -1573,8 +1576,8 @@
 
         @media (max-width: 400px) {
             .container { padding: 0 14px; }
-            .logo-spo { display: none; }
-            .logo-divider { display: none; }
+            .logo-spo { height: 28px; }
+            .logo-divider { height: 24px; }
             .ticker-label { display: none; }
         }
     </style>
