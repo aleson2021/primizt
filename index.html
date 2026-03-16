@@ -96,7 +96,7 @@
             --radius-lg: 16px;
             --radius-xl: 24px;
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            --header-height: 80px;
+            --header-height: 100px;
         }
 
         html {
@@ -255,17 +255,17 @@
         }
 
         .logo-primizt {
-            height: 64px;
+            height: 80px;
             width: auto;
         }  
         .logo-divider {
             width: 1px;
-            height: 40px;
+            height: 55px;
             background: rgba(255,255,255,0.2);
         }
 
         .logo-spo {
-            height: 56px;
+            height: 70px;
             width: auto;
             /* Логотип уже белый, на тёмном фоне виден */
         }
@@ -1375,7 +1375,7 @@
         }
 
         .footer-brand .footer-logo {
-            height: 48px;
+            height: 60px;
         }
 
         .footer-social {
@@ -1539,9 +1539,10 @@
             .mobile-menu-btn { display: flex; }
             .mobile-nav-overlay { display: block; }
             .nav-bar { display: none; }
-            .logo-primizt { height: 44px; }
-            .logo-spo { height: 38px; }
-            .logo-divider { height: 34px; }
+            :root { --header-height: 80px; }
+            .logo-primizt { height: 56px; }
+            .logo-spo { height: 48px; }
+            .logo-divider { height: 40px; }
             .btn-apply { display: none; }
 
             .hero { min-height: auto; }
@@ -1574,8 +1575,9 @@
 
         @media (max-width: 400px) {
             .container { padding: 0 14px; }
-            .logo-spo { height: 28px; }
-            .logo-divider { height: 24px; }
+            .logo-primizt { height: 44px; }
+            .logo-spo { height: 36px; }
+            .logo-divider { height: 30px; }
             .ticker-label { display: none; }
         }
     </style>
