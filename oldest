@@ -1,0 +1,2169 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <base href="https://primizt.ru/" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ПримИЖТ — Приморский институт железнодорожного транспорта, филиал ДВГУПС в г. Уссурийске">
+    <title>ПримИЖТ — Приморский институт железнодорожного транспорта</title>
+    <link rel="shortcut icon" href="/templates/rsmetro1/favicon.ico" type="image/vnd.microsoft.icon" />
+    <link href="https://fonts.googleapis.com/css2?family=Commissioner:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* Шрифт Involve с GitHub */
+        @font-face {
+            font-family: 'Involve';
+            src: url('https://raw.githubusercontent.com/aleson2021/primizt/main/Involve-Regular.ttf') format('truetype');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Involve';
+            src: url('https://raw.githubusercontent.com/aleson2021/primizt/main/Involve-SemiBold.ttf') format('truetype');
+            font-weight: 600;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Involve';
+            src: url('https://raw.githubusercontent.com/aleson2021/primizt/main/Involve-Bold.ttf') format('truetype');
+            font-weight: 700;
+            font-style: normal;
+            font-display: swap;
+        }
+    </style>
+
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Основные по брендбуку */
+            --ultramarin: #331B93;
+            --orange: #FF7700;
+            --karmin: #9D141C;
+            --sosna: #0E745C;
+            --lazur: #0095FF;
+            --electric: #8E59FF;
+            --yellow: #FFE500;
+            --zarya: #FF505B;
+            --laminaria: #00B68D;
+            --sky: #58D8FF;
+            --black: #000000;
+            --grafit: #343434;
+            --grey: #B9B9B9;
+            --light-grey: #EFEFEF;
+            --white: #FFFFFF;
+
+            /* Зелёная гамма ПримИЖТ */
+            --primary: #0E745C;
+            --primary-dark: #095E49;
+            --primary-darker: #064536;
+            --primary-light: #00B68D;
+            --accent: #FF7700;
+            --accent-hover: #E06800;
+            --danger: #9D141C;
+
+            --bg-light: #F5F5F8;
+            --bg-white: #FFFFFF;
+            --border: #E0E0E6;
+            --shadow-sm: 0 2px 8px rgba(14,116,92,0.06);
+            --shadow-md: 0 4px 20px rgba(14,116,92,0.08);
+            --shadow-lg: 0 8px 40px rgba(14,116,92,0.12);
+            --shadow-xl: 0 20px 60px rgba(14,116,92,0.15);
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --header-height: 100px;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: 'Commissioner', 'Arial', sans-serif;
+            color: var(--grafit);
+            background: var(--bg-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Involve', 'Arial', sans-serif;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        img { max-width: 100%; height: auto; display: block; }
+        ul { list-style: none; }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ══════════ TOP BAR ══════════ */
+        .top-bar {
+            background: var(--primary-darker);
+            color: rgba(255,255,255,0.75);
+            font-size: 0.78rem;
+            padding: 7px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .top-bar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .top-bar-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .top-bar-left span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            white-space: nowrap;
+        }
+
+        .top-bar-right {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .top-bar a { color: rgba(255,255,255,0.75); }
+        .top-bar a:hover { color: var(--yellow); }
+
+        .social-mini {
+            display: flex;
+            gap: 6px;
+        }
+
+        .social-mini a {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .social-mini a:hover {
+            background: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .social-mini a img {
+            width: 14px;
+            height: 14px;
+        }
+
+        .accessibility-btn {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.12);
+            color: rgba(255,255,255,0.8);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.72rem;
+            cursor: pointer;
+            font-family: inherit;
+            white-space: nowrap;
+            transition: var(--transition);
+        }
+
+        .accessibility-btn:hover {
+            background: rgba(255,255,255,0.2);
+            color: white;
+        }
+
+        /* ══════════ HEADER ══════════ */
+        .header {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(9,94,73,0.3);
+        }
+
+        .header .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: var(--header-height);
+            gap: 20px;
+        }
+
+        .logo-group {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex-shrink: 0;
+        }
+
+        .logo-primizt {
+            height: 80px;
+            width: auto;
+        }
+
+        .logo-divider {
+            width: 1px;
+            height: 55px;
+            background: rgba(255,255,255,0.2);
+        }
+
+        .logo-spo {
+            height: 70px;
+            width: auto;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .header-phone {
+            text-align: right;
+            color: white;
+        }
+
+        .header-phone .label {
+            font-size: 0.65rem;
+            color: rgba(255,255,255,0.6);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-weight: 600;
+        }
+
+        .header-phone .number {
+            font-size: 0.95rem;
+            font-weight: 700;
+        }
+
+        .header-phone .number a { color: white; }
+        .header-phone .number a:hover { color: var(--yellow); }
+
+        .btn-apply {
+            background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+            color: white;
+            padding: 10px 22px;
+            border-radius: var(--radius-xl);
+            font-weight: 700;
+            font-size: 0.8rem;
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            box-shadow: 0 4px 15px rgba(255,119,0,0.35);
+            white-space: nowrap;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: var(--transition);
+        }
+
+        .btn-apply:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(255,119,0,0.45);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: white;
+            font-size: 1.3rem;
+            cursor: pointer;
+            padding: 6px 10px;
+            border-radius: var(--radius-sm);
+            line-height: 1;
+            transition: var(--transition);
+        }
+
+        .mobile-menu-btn:hover { background: rgba(255,255,255,0.2); }
+
+        /* ══════════ NAVIGATION ══════════ */
+        .nav-bar {
+            background: var(--primary);
+            position: sticky;
+            top: var(--header-height);
+            z-index: 999;
+            border-top: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .nav-inner {
+            display: flex;
+            align-items: stretch;
+            height: auto;
+            min-height: 46px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .nav-link {
+            color: rgba(255,255,255,0.8);
+            padding: 12px 15px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            white-space: nowrap;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            transition: var(--transition);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 3px;
+            background: var(--accent);
+            border-radius: 3px 3px 0 0;
+            transition: var(--transition);
+        }
+
+        .nav-link:hover {
+            color: white;
+            background: rgba(255,255,255,0.06);
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after { width: 70%; }
+        .nav-link.active { color: white; }
+
+        .nav-dropdown { position: relative; display: flex; }
+
+        .nav-dropdown-arrow {
+            font-size: 0.45rem;
+            opacity: 0.5;
+            transition: var(--transition);
+        }
+
+        .nav-dropdown:hover .nav-dropdown-arrow {
+            transform: rotate(180deg);
+            opacity: 1;
+        }
+
+        .nav-dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: var(--white);
+            border-radius: 0 0 var(--radius-md) var(--radius-md);
+            box-shadow: var(--shadow-lg);
+            min-width: 280px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-6px);
+            transition: var(--transition);
+            z-index: 100;
+            overflow: hidden;
+        }
+
+        .nav-dropdown:hover .nav-dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .nav-dropdown-menu a {
+            display: block;
+            padding: 10px 20px;
+            color: var(--grafit);
+            font-size: 0.82rem;
+            border-bottom: 1px solid rgba(0,0,0,0.04);
+            transition: var(--transition);
+        }
+
+        .nav-dropdown-menu a:last-child { border-bottom: none; }
+
+        .nav-dropdown-menu a:hover {
+            background: var(--light-grey);
+            color: var(--primary);
+            padding-left: 26px;
+        }
+
+        /* ══════════ MOBILE NAV ══════════ */
+        .mobile-nav-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .mobile-nav-overlay.open { opacity: 1; visibility: visible; }
+
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            right: -320px;
+            width: 300px;
+            max-width: 85vw;
+            height: 100vh;
+            background: var(--white);
+            z-index: 2001;
+            transition: var(--transition);
+            overflow-y: auto;
+            box-shadow: var(--shadow-xl);
+        }
+
+        .mobile-nav.open { right: 0; }
+
+        .mobile-nav-header {
+            background: var(--primary);
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .mobile-nav-header h3 { font-size: 1rem; font-weight: 700; }
+
+        .mobile-nav-close {
+            background: rgba(255,255,255,0.15);
+            border: none;
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mobile-nav-close:hover { background: var(--accent); }
+
+        .mobile-nav-links { padding: 10px 0; }
+
+        .mobile-nav-links a {
+            display: block;
+            padding: 13px 24px;
+            color: var(--grafit);
+            font-size: 0.88rem;
+            font-weight: 500;
+            border-bottom: 1px solid rgba(0,0,0,0.04);
+            transition: var(--transition);
+        }
+
+        .mobile-nav-links a:hover,
+        .mobile-nav-links a.active {
+            color: var(--primary);
+            background: rgba(14,116,92,0.04);
+            padding-left: 32px;
+        }
+
+        .mobile-nav-links .sub-link {
+            padding-left: 40px;
+            font-size: 0.82rem;
+            font-weight: 400;
+            color: var(--grey);
+        }
+
+        .mobile-nav-links .sub-link:hover { padding-left: 48px; }
+
+        .mobile-nav-links .section-label {
+            padding: 14px 24px 6px;
+            font-size: 0.68rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--grey);
+            border-bottom: none;
+            cursor: default;
+        }
+
+        .mobile-nav-links .section-label:hover {
+            background: none;
+            padding-left: 24px;
+        }
+
+        .mobile-nav-cta {
+            padding: 16px 24px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .mobile-nav-cta a {
+            display: block;
+            background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+            color: white;
+            text-align: center;
+            padding: 14px 24px;
+            border-radius: var(--radius-xl);
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border: none;
+        }
+
+        .mobile-nav-contacts {
+            padding: 20px 24px;
+            background: var(--light-grey);
+            border-top: 1px solid var(--border);
+        }
+
+        .mobile-nav-contacts p {
+            font-size: 0.82rem;
+            color: var(--grafit);
+            margin-bottom: 6px;
+        }
+
+        .mobile-nav-contacts a {
+            color: var(--primary);
+            font-weight: 600;
+            padding: 0;
+            border: none;
+        }
+
+        .mobile-social {
+            display: flex;
+            gap: 8px;
+            margin-top: 14px;
+        }
+
+        .mobile-social a {
+            width: 38px;
+            height: 38px;
+            border-radius: var(--radius-sm);
+            background: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mobile-social a img {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* ══════════ HERO ══════════ */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-darker) 0%, var(--primary) 40%, var(--primary-light) 100%);
+            position: relative;
+            overflow: hidden;
+            min-height: 500px;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background:
+                radial-gradient(ellipse at 20% 60%, rgba(255,119,0,0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(0,182,141,0.1) 0%, transparent 40%);
+        }
+
+        .hero-pattern {
+            position: absolute;
+            inset: 0;
+            opacity: 0.03;
+            pointer-events: none;
+            background-image:
+                repeating-linear-gradient(0deg, transparent, transparent 50px, rgba(255,255,255,0.5) 50px, rgba(255,255,255,0.5) 51px),
+                repeating-linear-gradient(90deg, transparent, transparent 50px, rgba(255,255,255,0.5) 50px, rgba(255,255,255,0.5) 51px);
+        }
+
+        .hero .container {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+            padding-top: 50px;
+            padding-bottom: 70px;
+        }
+
+        .hero-content { color: white; }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.15);
+            padding: 8px 18px;
+            border-radius: var(--radius-xl);
+            font-size: 0.78rem;
+            font-weight: 500;
+            margin-bottom: 24px;
+            color: var(--yellow);
+        }
+
+        .hero-badge-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--yellow);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.5); }
+        }
+
+        .hero h2 {
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            margin-bottom: 20px;
+        }
+
+        .hero h2 .highlight {
+            background: linear-gradient(135deg, var(--accent), var(--yellow));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-description {
+            font-size: 1rem;
+            color: rgba(255,255,255,0.7);
+            line-height: 1.7;
+            margin-bottom: 32px;
+            max-width: 480px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .btn-hero-primary {
+            background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+            color: white;
+            padding: 14px 32px;
+            border-radius: var(--radius-xl);
+            font-weight: 700;
+            font-size: 0.9rem;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(255,119,0,0.35);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+        }
+
+        .btn-hero-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(255,119,0,0.5);
+        }
+
+        .btn-hero-secondary {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: white;
+            padding: 14px 32px;
+            border-radius: var(--radius-xl);
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+        }
+
+        .btn-hero-secondary:hover {
+            background: rgba(255,255,255,0.18);
+            transform: translateY(-3px);
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .stat-card {
+            background: rgba(255,255,255,0.06);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: var(--radius-lg);
+            padding: 24px 20px;
+            text-align: center;
+            color: white;
+            transition: var(--transition);
+        }
+
+        .stat-card:hover {
+            background: rgba(255,255,255,0.12);
+            transform: translateY(-4px);
+            border-color: rgba(255,255,255,0.2);
+        }
+
+        .stat-number {
+            font-size: clamp(1.8rem, 3vw, 2.4rem);
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent), var(--yellow));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+
+        .stat-label {
+            font-size: 0.76rem;
+            color: rgba(255,255,255,0.5);
+            line-height: 1.3;
+        }
+
+        /* ══════════ TICKER ══════════ */
+        .ticker {
+            background: var(--accent);
+            color: white;
+            overflow: hidden;
+        }
+
+        .ticker-inner {
+            display: flex;
+            align-items: center;
+            padding: 9px 0;
+            gap: 14px;
+        }
+
+        .ticker-label {
+            background: var(--primary-darker);
+            color: var(--yellow);
+            padding: 5px 14px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            white-space: nowrap;
+            border-radius: var(--radius-sm);
+            flex-shrink: 0;
+        }
+
+        .ticker-track { overflow: hidden; flex: 1; }
+
+        .ticker-content {
+            display: flex;
+            animation: ticker 35s linear infinite;
+            gap: 50px;
+            width: max-content;
+        }
+
+        .ticker-item {
+            white-space: nowrap;
+            font-size: 0.82rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .ticker-item::before {
+            content: '●';
+            font-size: 0.4rem;
+            opacity: 0.6;
+        }
+
+        @keyframes ticker {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* ══════════ SECTIONS ══════════ */
+        .section { padding: 70px 0; }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .section-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(14,116,92,0.08);
+            color: var(--primary);
+            padding: 7px 16px;
+            border-radius: var(--radius-xl);
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 14px;
+        }
+
+        .section-title {
+            font-size: clamp(1.5rem, 3vw, 2.1rem);
+            font-weight: 700;
+            color: var(--black);
+            letter-spacing: -0.02em;
+            margin-bottom: 10px;
+        }
+
+        .section-subtitle {
+            font-size: 1rem;
+            color: var(--grey);
+            max-width: 560px;
+            margin: 0 auto;
+        }
+
+        /* ══════════ NEWS ══════════ */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .news-card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            transition: var(--transition);
+        }
+
+        .news-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+            border-color: transparent;
+        }
+
+        .news-card.featured {
+            grid-column: 1 / -1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .news-img {
+            height: 200px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            position: relative;
+            overflow: hidden;
+        }
+
+        .news-card.featured .news-img {
+            height: 100%;
+            min-height: 300px;
+        }
+
+        .news-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .news-card:hover .news-img img { transform: scale(1.05); }
+
+        .news-img-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: rgba(255,255,255,0.15);
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+        }
+
+        .news-img-overlay {
+            position: absolute;
+            top: 14px;
+            left: 14px;
+        }
+
+        .news-category {
+            background: var(--accent);
+            color: white;
+            padding: 4px 12px;
+            border-radius: var(--radius-xl);
+            font-size: 0.68rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .news-body {
+            padding: 22px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .news-meta {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 10px;
+        }
+
+        .news-date, .news-views {
+            font-size: 0.73rem;
+            color: var(--grey);
+            font-weight: 500;
+        }
+
+        .news-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--black);
+            line-height: 1.4;
+            margin-bottom: 10px;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .news-card.featured .news-title { font-size: 1.35rem; }
+
+        .news-excerpt {
+            font-size: 0.85rem;
+            color: var(--grafit);
+            line-height: 1.6;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            margin-bottom: 16px;
+            flex: 1;
+        }
+
+        .news-readmore {
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.82rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .news-readmore:hover { color: var(--accent); gap: 10px; }
+
+        .btn-all-news {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--primary);
+            color: white;
+            padding: 13px 30px;
+            border-radius: var(--radius-xl);
+            font-weight: 700;
+            font-size: 0.85rem;
+            margin-top: 40px;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn-all-news:hover {
+            background: var(--primary-light);
+            transform: translateY(-2px);
+        }
+
+        /* ══════════ PROGRAMS ══════════ */
+        .programs-section {
+            background: linear-gradient(135deg, var(--primary-darker), var(--primary-dark));
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .programs-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background:
+                radial-gradient(ellipse at 10% 90%, rgba(255,119,0,0.08) 0%, transparent 40%),
+                radial-gradient(ellipse at 90% 10%, rgba(0,182,141,0.08) 0%, transparent 40%);
+        }
+
+        .programs-section .section-tag {
+            background: rgba(255,255,255,0.08);
+            color: var(--yellow);
+        }
+
+        .programs-section .section-title { color: white; }
+        .programs-section .section-subtitle { color: rgba(255,255,255,0.45); }
+
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .program-card {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: var(--radius-lg);
+            padding: 26px 20px;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .program-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--yellow));
+            opacity: 0;
+            transition: var(--transition);
+            pointer-events: none;
+        }
+
+        .program-card:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: rgba(255,255,255,0.15);
+            transform: translateY(-5px);
+        }
+
+        .program-card:hover::before { opacity: 1; }
+
+        .program-icon {
+            width: 46px;
+            height: 46px;
+            background: linear-gradient(135deg, var(--accent), var(--yellow));
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            margin-bottom: 16px;
+        }
+
+        .program-card h3 {
+            font-size: 0.92rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+
+        .program-card p {
+            font-size: 0.76rem;
+            color: rgba(255,255,255,0.4);
+            line-height: 1.5;
+            margin-bottom: 12px;
+        }
+
+        .program-duration {
+            font-size: 0.7rem;
+            color: var(--yellow);
+            font-weight: 600;
+        }
+
+        /* ══════════ ADVANTAGES ══════════ */
+        .advantages-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .advantage-card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 32px 24px;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border);
+            transition: var(--transition);
+        }
+
+        .advantage-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary);
+        }
+
+        .advantage-icon {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, rgba(14,116,92,0.1), rgba(14,116,92,0.03));
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            font-size: 1.5rem;
+        }
+
+        .advantage-card h3 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--black);
+        }
+
+        .advantage-card p {
+            font-size: 0.83rem;
+            color: var(--grafit);
+            line-height: 1.6;
+        }
+
+        /* ══════════ DIRECTOR ══════════ */
+        .director-section { background: var(--white); }
+
+        .director-card {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 36px;
+            align-items: center;
+            max-width: 780px;
+            margin: 0 auto;
+            background: var(--light-grey);
+            border-radius: var(--radius-xl);
+            padding: 36px;
+            border: 1px solid var(--border);
+        }
+
+        .director-photo {
+            width: 170px;
+            height: 230px;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+        }
+
+        .director-photo img { width: 100%; height: 100%; object-fit: cover; }
+
+        .director-info h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 4px;
+        }
+
+        .director-info .position {
+            font-size: 0.85rem;
+            color: var(--grey);
+            margin-bottom: 14px;
+            font-weight: 500;
+        }
+
+        .director-info p {
+            font-size: 0.88rem;
+            color: var(--grafit);
+            line-height: 1.7;
+        }
+
+        /* ══════════ CTA ══════════ */
+        .cta-section {
+            background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+            padding: 60px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%; right: -15%;
+            width: 400px; height: 400px;
+            background: rgba(255,255,255,0.04);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .cta-content {
+            text-align: center;
+            color: white;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-content h2 {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .cta-content p {
+            font-size: 1rem;
+            opacity: 0.85;
+            margin-bottom: 28px;
+            max-width: 460px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .btn-cta-primary {
+            background: white;
+            color: var(--accent);
+            padding: 14px 32px;
+            border-radius: var(--radius-xl);
+            font-weight: 700;
+            font-size: 0.9rem;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            transition: var(--transition);
+        }
+
+        .btn-cta-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+
+        .btn-cta-secondary {
+            background: transparent;
+            color: white;
+            padding: 14px 32px;
+            border-radius: var(--radius-xl);
+            font-weight: 600;
+            font-size: 0.9rem;
+            border: 2px solid rgba(255,255,255,0.4);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn-cta-secondary:hover {
+            border-color: white;
+            background: rgba(255,255,255,0.1);
+        }
+
+        /* ══════════ PARTNERS ══════════ */
+        .partners-section {
+            background: var(--white);
+            padding: 50px 0;
+        }
+
+        .partners-grid {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .partner-item {
+            padding: 10px 20px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            color: var(--grey);
+            font-size: 0.8rem;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+
+        .partner-item:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* ══════════ FOOTER ══════════ */
+        .footer {
+            background: var(--primary-darker);
+            color: rgba(255,255,255,0.6);
+            padding: 50px 0 0;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr;
+            gap: 36px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .footer-brand .footer-logo {
+            height: 60px;
+        }
+
+        .footer-brand p {
+            font-size: 0.82rem;
+            line-height: 1.7;
+            margin: 16px 0 18px;
+            color: rgba(255,255,255,0.4);
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 8px;
+        }
+
+        .footer-social a {
+            width: 36px;
+            height: 36px;
+            border-radius: var(--radius-sm);
+            background: rgba(255,255,255,0.06);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .footer-social a:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .footer-social a img {
+            width: 16px;
+            height: 16px;
+        }
+
+        .footer-col h4 {
+            color: white;
+            font-size: 0.82rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .footer-col li { margin-bottom: 9px; }
+
+        .footer-col a {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.4);
+        }
+
+        .footer-col a:hover { color: var(--yellow); padding-left: 4px; }
+
+        .footer-contact-item {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .footer-contact-icon {
+            width: 30px;
+            height: 30px;
+            background: rgba(255,255,255,0.05);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            flex-shrink: 0;
+        }
+
+        .footer-contact-text {
+            font-size: 0.8rem;
+            line-height: 1.4;
+        }
+
+        .footer-contact-text strong {
+            color: white;
+            font-weight: 600;
+            font-size: 0.72rem;
+        }
+
+        .footer-contact-text a { color: var(--yellow) !important; }
+
+        .footer-bottom {
+            padding: 20px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .footer-bottom-text {
+            font-size: 0.72rem;
+            color: rgba(255,255,255,0.25);
+        }
+
+        .footer-bottom-links {
+            display: flex;
+            gap: 18px;
+            flex-wrap: wrap;
+        }
+
+        .footer-bottom-links a {
+            font-size: 0.72rem;
+            color: rgba(255,255,255,0.25);
+        }
+
+        .footer-bottom-links a:hover { color: rgba(255,255,255,0.5); }
+
+        /* ══════════ SCROLL TOP ══════════ */
+        .scroll-top {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            width: 44px;
+            height: 44px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 1.1rem;
+            cursor: pointer;
+            box-shadow: var(--shadow-md);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: var(--transition);
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .scroll-top:hover {
+            background: var(--accent);
+            transform: translateY(-4px);
+        }
+
+        /* ══════════ RESPONSIVE ══════════ */
+        @media (max-width: 1100px) {
+            .programs-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 1024px) {
+            .hero .container { grid-template-columns: 1fr; gap: 36px; }
+            .hero-stats { grid-template-columns: repeat(4, 1fr); }
+            .news-grid { grid-template-columns: repeat(2, 1fr); }
+            .news-card.featured { grid-template-columns: 1fr; }
+            .news-card.featured .news-img { min-height: 220px; }
+            .footer-grid { grid-template-columns: repeat(2, 1fr); }
+            .header-phone { display: none; }
+        }
+
+        @media (max-width: 768px) {
+            :root { --header-height: 80px; }
+            .top-bar { display: none; }
+            .mobile-menu-btn { display: flex; }
+            .mobile-nav-overlay { display: block; }
+            .nav-bar { display: none; }
+            .logo-primizt { height: 56px; }
+            .logo-spo { height: 48px; }
+            .logo-divider { height: 40px; }
+            .btn-apply { display: none; }
+
+            .hero { min-height: auto; }
+            .hero .container { padding-top: 32px; padding-bottom: 50px; }
+            .hero-stats { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+            .stat-card { padding: 16px 12px; }
+            .hero-buttons { flex-direction: column; }
+            .btn-hero-primary, .btn-hero-secondary { justify-content: center; width: 100%; }
+
+            .section { padding: 50px 0; }
+            .news-grid { grid-template-columns: 1fr; }
+            .news-card.featured { grid-column: 1; display: flex; flex-direction: column; }
+            .programs-grid { grid-template-columns: 1fr; gap: 12px; }
+            .advantages-grid { grid-template-columns: 1fr; gap: 14px; }
+
+            .director-card {
+                grid-template-columns: 1fr;
+                text-align: center;
+                padding: 24px;
+                gap: 20px;
+            }
+            .director-photo { width: 130px; height: 175px; margin: 0 auto; }
+
+            .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+            .cta-buttons { flex-direction: column; align-items: center; }
+            .btn-cta-primary, .btn-cta-secondary { width: 100%; max-width: 280px; text-align: center; }
+            .footer-bottom { flex-direction: column; text-align: center; }
+        }
+
+        @media (max-width: 400px) {
+            .container { padding: 0 14px; }
+            .logo-primizt { height: 44px; }
+            .logo-spo { height: 36px; }
+            .logo-divider { height: 30px; }
+            .ticker-label { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- TOP BAR -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="top-bar-left">
+                <span>г. Уссурийск, ул. Тургенева, 3</span>
+                <span><a href="mailto:info@primizt.ru">info@primizt.ru</a></span>
+            </div>
+            <div class="top-bar-right">
+                <div class="social-mini">
+                    <a href="https://vk.com/club221016462" target="_blank" rel="noopener" title="ВКонтакте">
+                        <img src="https://cdn.simpleicons.org/vk/white" alt="VK" width="14" height="14">
+                    </a>
+                    <a href="https://t.me/primigt1" target="_blank" rel="noopener" title="Telegram">
+                        <img src="https://cdn.simpleicons.org/telegram/white" alt="TG" width="14" height="14">
+                    </a>
+                    <a href="https://rutube.ru/channel/29105887/" target="_blank" rel="noopener" title="RuTube">
+                        <img src="https://cdn.simpleicons.org/rutube/white" alt="RT" width="14" height="14">
+                    </a>
+                    <a href="https://max.ru/id2724018158_gos5" target="_blank" rel="noopener" title="MAX">
+                        <img src="https://cdn.simpleicons.org/maildotru/white" alt="MX" width="14" height="14">
+                    </a>
+                </div>
+                <a href="/?template=accessibility"><button class="accessibility-btn">Версия для слабовидящих</button></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- HEADER -->
+    <header class="header" id="header">
+        <div class="container">
+            <a href="https://primizt.ru/" class="logo-group">
+                <img src="/images/Sait/logo/logo_n2_80_2.png" alt="ПримИЖТ" class="logo-primizt">
+                <div class="logo-divider"></div>
+                <img src="https://raw.githubusercontent.com/aleson2021/primizt/main/spo.png" alt="Система СПО Приморского края" class="logo-spo">
+            </a>
+            <div class="header-right">
+                <div class="header-phone">
+                    <div class="label">Приёмная комиссия</div>
+                    <div class="number"><a href="tel:89242569225">8-924-256-92-25</a></div>
+                </div>
+                <a href="/abitur" class="btn-apply">Подать заявку</a>
+                <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Меню">☰</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- DESKTOP NAV -->
+    <nav class="nav-bar">
+        <div class="container">
+            <div class="nav-inner">
+                <a href="/" class="nav-link active">Главная</a>
+                <div class="nav-dropdown">
+                    <a class="nav-link">Об институте <span class="nav-dropdown-arrow">▼</span></a>
+                    <div class="nav-dropdown-menu">
+                        <a href="/home/administratsiya">Администрация</a>
+                        <a href="/home/kontakty">Контакты</a>
+                        <a href="/home/istoriya">История</a>
+                        <a href="/home/otchjoty">Отчёты</a>
+                        <a href="/home/protivodejstvie-korruptsii">Противодействие коррупции</a>
+                    </div>
+                </div>
+                <a href="/novosti" class="nav-link">Новости</a>
+                <div class="nav-dropdown">
+                    <a href="/studentu" class="nav-link">Студенту <span class="nav-dropdown-arrow">▼</span></a>
+                    <div class="nav-dropdown-menu">
+                        <a href="/studentu/raspisanie-zanyatij">Расписание занятий</a>
+                        <a href="/studentu/rejting-vo">Рейтинг ФВО</a>
+                        <a href="/studentu/rejting-spo" target="_blank">Рейтинг СПО</a>
+                        <a href="/studentu/platnye-uslugi">Платные услуги</a>
+                        <a href="/studentu/obrazovatelnye-resursy">Образовательные ресурсы</a>
+                        <a href="/studentu/secure-internet">Безопасный интернет</a>
+                        <a href="/studentu/sportivnyj-klub">Спортивный клуб</a>
+                        <a href="/studentu/professionaly">Профессионалы</a>
+                        <a href="/studentu/akademicheskij-otpusk">Академический отпуск</a>
+                        <a href="/studentu/edinoe-okno">«Единое окно»</a>
+                    </div>
+                </div>
+                <a href="/abitur" class="nav-link">Абитуриенту</a>
+                <div class="nav-dropdown">
+                    <a href="/nauka" class="nav-link">Наука <span class="nav-dropdown-arrow">▼</span></a>
+                    <div class="nav-dropdown-menu">
+                        <a href="/nauka/nauchno-issledovatelskaya-deyatelnost">Научная деятельность</a>
+                        <a href="/nauka/normativnaya-dokumentatsiya">Нормативная документация</a>
+                        <a href="/nauka/konferentsii">Научные конференции</a>
+                        <a href="/nauka/studencheskoe-nauchnoe-soobshchestvo">Студенческое научное сообщество</a>
+                    </div>
+                </div>
+                <a href="/biblioteka" class="nav-link">Библиотека</a>
+                <a href="/centr-karery" class="nav-link">Центр карьеры</a>
+                <a href="/vakansii" class="nav-link">Вакансии</a>
+                <a href="/kurs" class="nav-link">Доп. образование</a>
+                <div class="nav-dropdown">
+                    <a href="/sveden" class="nav-link">Сведения <span class="nav-dropdown-arrow">▼</span></a>
+                    <div class="nav-dropdown-menu">
+                        <a href="/sveden/common/">Основные сведения</a>
+                        <a href="/sveden/struct">Структура и органы управления</a>
+                        <a href="/sveden/document">Документы</a>
+                        <a href="/sveden/education">Образование</a>
+                        <a href="/sveden/managers">Руководство</a>
+                        <a href="/sveden/employees">Педагогический состав</a>
+                        <a href="/sveden/objects/">Мат.-техническое обеспечение</a>
+                        <a href="/sveden/paid_edu/">Платные образовательные услуги</a>
+                        <a href="/sveden/budget/">Финансово-хозяйственная деятельность</a>
+                        <a href="/sveden/vacant/">Вакантные места</a>
+                        <a href="/sveden/grants/">Стипендии и поддержка</a>
+                        <a href="/sveden/inter/">Международное сотрудничество</a>
+                        <a href="/sveden/catering/">Организация питания</a>
+                        <a href="/sveden/eduStandarts/">Образовательные стандарты</a>
+                    </div>
+                </div>
+                <a href="/feedback" class="nav-link">Обращения</a>
+                <a href="/faq" class="nav-link">FAQ</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MOBILE NAV -->
+    <div class="mobile-nav-overlay" id="mobileOverlay"></div>
+    <div class="mobile-nav" id="mobileNav">
+        <div class="mobile-nav-header">
+            <h3>Меню</h3>
+            <button class="mobile-nav-close" id="mobileNavClose">✕</button>
+        </div>
+        <div class="mobile-nav-links">
+            <a href="/" class="active">Главная</a>
+            <span class="section-label">Об институте</span>
+            <a href="/home/administratsiya" class="sub-link">Администрация</a>
+            <a href="/home/kontakty" class="sub-link">Контакты</a>
+            <a href="/home/istoriya" class="sub-link">История</a>
+            <a href="/novosti">Новости</a>
+            <span class="section-label">Студенту</span>
+            <a href="/studentu/raspisanie-zanyatij" class="sub-link">Расписание занятий</a>
+            <a href="/studentu/rejting-vo" class="sub-link">Рейтинг ФВО</a>
+            <a href="/studentu/platnye-uslugi" class="sub-link">Платные услуги</a>
+            <a href="/studentu/sportivnyj-klub" class="sub-link">Спортивный клуб</a>
+            <a href="/abitur">Абитуриенту</a>
+            <span class="section-label">Наука</span>
+            <a href="/nauka/konferentsii" class="sub-link">Научные конференции</a>
+            <a href="/nauka/studencheskoe-nauchnoe-soobshchestvo" class="sub-link">Студенческое научное сообщество</a>
+            <a href="/biblioteka">Библиотека</a>
+            <a href="/centr-karery">Центр карьеры</a>
+            <a href="/vakansii">Вакансии</a>
+            <a href="/kurs">Дополнительное образование</a>
+            <span class="section-label">Сведения</span>
+            <a href="/sveden/common/" class="sub-link">Основные сведения</a>
+            <a href="/sveden/document" class="sub-link">Документы</a>
+            <a href="/sveden/education" class="sub-link">Образование</a>
+            <a href="/sveden/employees" class="sub-link">Педагогический состав</a>
+            <a href="/feedback">Обращение граждан</a>
+            <a href="/faq">Часто задаваемые вопросы</a>
+        </div>
+        <div class="mobile-nav-cta">
+            <a href="/abitur">Подать заявку</a>
+        </div>
+        <div class="mobile-nav-contacts">
+            <p><strong>Приёмная комиссия:</strong></p>
+            <p><a href="tel:89242569225">8-924-256-92-25</a></p>
+            <p><a href="tel:84234249305">8-4234-24-93-05</a></p>
+            <p><a href="tel:89242469304">8-924-246-93-04</a></p>
+            <div class="mobile-social">
+                <a href="https://vk.com/club221016462" target="_blank" rel="noopener" title="VK">
+                    <img src="https://cdn.simpleicons.org/vk/white" alt="VK" width="16" height="16">
+                </a>
+                <a href="https://t.me/primigt1" target="_blank" rel="noopener" title="TG">
+                    <img src="https://cdn.simpleicons.org/telegram/white" alt="TG" width="16" height="16">
+                </a>
+                <a href="https://rutube.ru/channel/29105887/" target="_blank" rel="noopener" title="RT">
+                    <img src="https://cdn.simpleicons.org/rutube/white" alt="RT" width="16" height="16">
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-pattern"></div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span class="hero-badge-dot"></span>
+                    Приём документов 2026 открыт
+                </div>
+                <h2>Старт здесь.<br><span class="highlight">Карьера везде.</span></h2>
+                <p class="hero-description">Приморский институт железнодорожного транспорта — филиал ДВГУПС. Качественное образование, современная база, гарантированное трудоустройство в РЖД.</p>
+                <div class="hero-buttons">
+                    <a href="/abitur" class="btn-hero-primary">Поступить в 2026 &#8594;</a>
+                    <a href="/home/istoriya" class="btn-hero-secondary">Узнать больше</a>
+                </div>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-card">
+                    <div class="stat-number">65+</div>
+                    <div class="stat-label">лет подготовки<br>специалистов</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">15</div>
+                    <div class="stat-label">направлений<br>обучения</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">98%</div>
+                    <div class="stat-label">выпускников<br>трудоустроены</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">2K+</div>
+                    <div class="stat-label">студентов<br>обучаются</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TICKER -->
+    <div class="ticker">
+        <div class="container">
+            <div class="ticker-inner">
+                <span class="ticker-label">Объявления</span>
+                <div class="ticker-track">
+                    <div class="ticker-content">
+                        <span class="ticker-item">Экскурсии для школьников — запись открыта</span>
+                        <span class="ticker-item">Итоги городских олимпиад по математике и физике (2026)</span>
+                        <span class="ticker-item">Региональный этап «Профессионалы-2026» на площадках ПримИЖТ</span>
+                        <span class="ticker-item">Приёмная комиссия работает ежедневно с 9:00 до 17:00</span>
+                        <span class="ticker-item">Экскурсии для школьников — запись открыта</span>
+                        <span class="ticker-item">Итоги городских олимпиад по математике и физике (2026)</span>
+                        <span class="ticker-item">Региональный этап «Профессионалы-2026» на площадках ПримИЖТ</span>
+                        <span class="ticker-item">Приёмная комиссия работает ежедневно с 9:00 до 17:00</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- NEWS -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">Лента событий</div>
+                <h2 class="section-title">Главные новости</h2>
+                <p class="section-subtitle">Последние события из жизни института</p>
+            </div>
+            <div class="news-grid">
+                <article class="news-card featured">
+                    <div class="news-img">
+                        <img src="/media/k2/items/src/1f9467ed0ebd32e9dc822d63c55d5401.jpg" alt="Олимпиады 2026" onerror="this.parentNode.innerHTML='<div class=news-img-placeholder>&#127942;</div>'">
+                        <div class="news-img-overlay"><span class="news-category">Важное</span></div>
+                    </div>
+                    <div class="news-body">
+                        <div class="news-meta">
+                            <span class="news-date">13 марта 2026</span>
+                            <span class="news-views">2 просмотра</span>
+                        </div>
+                        <h3 class="news-title">Итоги городских предметных олимпиад по математике и физике для школьников (2026)</h3>
+                        <p class="news-excerpt">28 февраля и 1 марта 2026 г. в Приморском институте железнодорожного транспорта – филиале ДВГУПС в г. Уссурийске прошли Городские олимпиады среди учащихся школ города.</p>
+                        <a href="/component/k2/item/621-1832" class="news-readmore">Читать далее &#8594;</a>
+                    </div>
+                </article>
+                <article class="news-card">
+                    <div class="news-img">
+                        <img src="/media/k2/items/src/a5cfeb7eb858a454222c6a713718c016.jpg" alt="Приморцы — Герои России" onerror="this.parentNode.innerHTML='<div class=news-img-placeholder>&#127894;</div>'">
+                        <div class="news-img-overlay"><span class="news-category">Патриотизм</span></div>
+                    </div>
+                    <div class="news-body">
+                        <div class="news-meta">
+                            <span class="news-date">24 февраля 2026</span>
+                            <span class="news-views">20 просмотров</span>
+                        </div>
+                        <h3 class="news-title">Патриотическое мероприятие «Приморцы — Герои России»</h3>
+                        <p class="news-excerpt">Активисты Молодой гвардии организовали яркое патриотическое мероприятие для первокурсников.</p>
+                        <a href="/component/k2/item/620-1821-2" class="news-readmore">Читать далее &#8594;</a>
+                    </div>
+                </article>
+                <article class="news-card">
+                    <div class="news-img">
+                        <img src="/media/k2/items/src/a05c597f0fd5beafc6fa40acefae0330.jpg" alt="Профессионалы-2026" onerror="this.parentNode.innerHTML='<div class=news-img-placeholder>&#9881;</div>'">
+                        <div class="news-img-overlay"><span class="news-category">Конкурс</span></div>
+                    </div>
+                    <div class="news-body">
+                        <div class="news-meta">
+                            <span class="news-date">24 февраля 2026</span>
+                            <span class="news-views">30 просмотров</span>
+                        </div>
+                        <h3 class="news-title">«Профессионалы-2026» — региональный этап</h3>
+                        <p class="news-excerpt">На площадках института прошёл региональный этап Всероссийского чемпионатного движения.</p>
+                        <a href="/component/k2/item/619-1821-1" class="news-readmore">Читать далее &#8594;</a>
+                    </div>
+                </article>
+                <article class="news-card">
+                    <div class="news-img">
+                        <img src="/media/k2/items/src/ab9083c4344a26f28a8b1378ce88e8e8.jpg" alt="Молодая Гвардия" onerror="this.parentNode.innerHTML='<div class=news-img-placeholder>&#129309;</div>'">
+                        <div class="news-img-overlay"><span class="news-category">Событие</span></div>
+                    </div>
+                    <div class="news-body">
+                        <div class="news-meta">
+                            <span class="news-date">23 января 2026</span>
+                            <span class="news-views">38 просмотров</span>
+                        </div>
+                        <h3 class="news-title">ПримИЖТ заключил соглашение с «Молодой Гвардией»</h3>
+                        <p class="news-excerpt">Состоялось важное событие для студентов и преподавателей института.</p>
+                        <a href="/component/k2/item/615-1807" class="news-readmore">Читать далее &#8594;</a>
+                    </div>
+                </article>
+                <article class="news-card">
+                    <div class="news-img">
+                        <img src="/media/k2/items/src/1a1c7a0ba8794f499343f3710b15a9ab.jpg" alt="Телемост" onerror="this.parentNode.innerHTML='<div class=news-img-placeholder>&#127760;</div>'">
+                        <div class="news-img-overlay"><span class="news-category">Международное</span></div>
+                    </div>
+                    <div class="news-body">
+                        <div class="news-meta">
+                            <span class="news-date">27 ноября 2025</span>
+                            <span class="news-views">47 просмотров</span>
+                        </div>
+                        <h3 class="news-title">Телемост «Дружба железных дорог»</h3>
+                        <p class="news-excerpt">20 ноября 2025 года в России отмечается День работника транспорта.</p>
+                        <a href="/component/k2/item/613-1765" class="news-readmore">Читать далее &#8594;</a>
+                    </div>
+                </article>
+            </div>
+            <div style="text-align:center"><a href="/novosti" class="btn-all-news">Все новости &#8594;</a></div>
+        </div>
+    </section>
+
+    <!-- PROGRAMS -->
+    <section class="section programs-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">Направления подготовки</div>
+                <h2 class="section-title">Выбери свою профессию</h2>
+                <p class="section-subtitle">Программы среднего и высшего профессионального образования</p>
+            </div>
+            <div class="programs-grid">
+                <div class="program-card">
+                    <div class="program-icon">&#128642;</div>
+                    <h3>Помощник машиниста локомотива</h3>
+                    <p>Управление тяговым подвижным составом</p>
+                    <span class="program-duration">3 года 10 мес. (СПО)</span>
+                </div>
+                <div class="program-card">
+                    <div class="program-icon">&#128295;</div>
+                    <h3>Техническая эксплуатация подвижного состава</h3>
+                    <p>Обслуживание и ремонт локомотивов</p>
+                    <span class="program-duration">3 года 10 мес. (СПО)</span>
+                </div>
+                <div class="program-card">
+                    <div class="program-icon">&#128739;</div>
+                    <h3>Строительство железных дорог</h3>
+                    <p>Проектирование и содержание путей</p>
+                    <span class="program-duration">3 года 10 мес. (СПО)</span>
+                </div>
+                <div class="program-card">
+                    <div class="program-icon">&#9889;</div>
+                    <h3>Электроснабжение на ж/д транспорте</h3>
+                    <p>Системы электроснабжения и контактные сети</p>
+                    <span class="program-duration">3 года 10 мес. (СПО)</span>
+                </div>
+                <div class="program-card">
+                    <div class="program-icon">&#128187;</div>
+                    <h3>Автоматика и телемеханика</h3>
+                    <p>Системы автоматизации движения</p>
+                    <span class="program-duration">3 года 10 мес. (СПО)</span>
+                </div>
+                <div class="program-card">
+                    <div class="program-icon">&#128230;</div>
+                    <h3>Организация перевозок</h3>
+                    <p>Логистика и управление перевозками</p>
+                    <span class="program-duration">3 года 10 мес. (СПО)</span>
+                </div>
+                <div class="program-card">
+                    <div class="program-icon">&#127963;</div>
+                    <h3>Строительство (ВО)</h3>
+                    <p>Бакалавриат — транспортное строительство</p>
+                    <span class="program-duration">4 года (бакалавриат)</span>
+                </div>
+                <div class="program-card">
+                    <div class="program-icon">&#128200;</div>
+                    <h3>Экономика и управление</h3>
+                    <p>Менеджмент и управление на транспорте</p>
+                    <span class="program-duration">4 года (бакалавриат)</span>
+                </div>
+            </div>
+            <div style="text-align:center;margin-top:36px">
+                <a href="/abitur" class="btn-apply" style="font-size:0.88rem;padding:14px 34px;">Узнать условия приёма &#8594;</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ADVANTAGES -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">Преимущества</div>
+                <h2 class="section-title">Почему выбирают ПримИЖТ</h2>
+            </div>
+            <div class="advantages-grid">
+                <div class="advantage-card">
+                    <div class="advantage-icon">&#127919;</div>
+                    <h3>Гарантированное трудоустройство</h3>
+                    <p>98% выпускников работают в системе ОАО «РЖД»</p>
+                </div>
+                <div class="advantage-card">
+                    <div class="advantage-icon">&#127963;</div>
+                    <h3>Современная база</h3>
+                    <p>Лаборатории, тренажёры, полигоны для практики</p>
+                </div>
+                <div class="advantage-card">
+                    <div class="advantage-icon">&#128176;</div>
+                    <h3>Бюджетные места</h3>
+                    <p>Большое количество бюджетных мест, стипендии</p>
+                </div>
+                <div class="advantage-card">
+                    <div class="advantage-icon">&#127968;</div>
+                    <h3>Общежитие</h3>
+                    <p>Комфортное общежитие для иногородних</p>
+                </div>
+                <div class="advantage-card">
+                    <div class="advantage-icon">&#127942;</div>
+                    <h3>Конкурсы и олимпиады</h3>
+                    <p>«Профессионалы», Всероссийские олимпиады</p>
+                </div>
+                <div class="advantage-card">
+                    <div class="advantage-icon">&#127760;</div>
+                    <h3>Филиал ДВГУПС</h3>
+                    <p>Диплом государственного университета</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DIRECTOR -->
+    <section class="section director-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">Руководство</div>
+                <h2 class="section-title">Директор института</h2>
+            </div>
+            <div class="director-card">
+                <div class="director-photo">
+                    <img src="/images/Director5.jpg" alt="Духовников В.К.">
+                </div>
+                <div class="director-info">
+                    <h3>Духовников В.К.</h3>
+                    <div class="position">Директор ПримИЖТ — филиала ДВГУПС</div>
+                    <p>Приморский институт железнодорожного транспорта ведёт подготовку высококвалифицированных специалистов для железнодорожной отрасли Дальнего Востока. Наши выпускники востребованы на всей сети железных дорог России.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Начни свой путь уже сегодня!</h2>
+                <p>Приёмная комиссия работает. Подай заявку или приходи к нам.</p>
+                <div class="cta-buttons">
+                    <a href="/abitur" class="btn-cta-primary">Подать документы</a>
+                    <a href="tel:89242569225" class="btn-cta-secondary">&#128222; 8-924-256-92-25</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PARTNERS -->
+    <section class="partners-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">Партнёры</div>
+            </div>
+            <div class="partners-grid">
+                <a href="http://rzd.ru/" class="partner-item" target="_blank" rel="noopener">ОАО «РЖД»</a>
+                <a href="http://www.dvgups.ru/" class="partner-item" target="_blank" rel="noopener">ДВГУПС</a>
+                <a href="http://www.mintrans.ru/" class="partner-item" target="_blank" rel="noopener">Минтранс РФ</a>
+                <a href="http://www.roszeldor.ru/" class="partner-item" target="_blank" rel="noopener">Росжелдор</a>
+                <a href="https://minobrnauki.gov.ru/" class="partner-item" target="_blank" rel="noopener">Минобрнауки</a>
+                <a href="https://edu.gov.ru/" class="partner-item" target="_blank" rel="noopener">Минпросвещения</a>
+                <a href="http://askitt.ru/" class="partner-item" target="_blank" rel="noopener">АСКИТТ</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <img src="/images/Sait/logo/logo_n2_80_2.png" alt="ПримИЖТ" class="footer-logo">
+                    <p>Приморский институт железнодорожного транспорта — филиал Дальневосточного государственного университета путей сообщения.</p>
+                    <div class="footer-social">
+                        <a href="https://vk.com/club221016462" target="_blank" rel="noopener" title="ВКонтакте">
+                            <img src="https://cdn.simpleicons.org/vk/white" alt="VK" width="16" height="16">
+                        </a>
+                        <a href="https://t.me/primigt1" target="_blank" rel="noopener" title="Telegram">
+                            <img src="https://cdn.simpleicons.org/telegram/white" alt="TG" width="16" height="16">
+                        </a>
+                        <a href="https://rutube.ru/channel/29105887/" target="_blank" rel="noopener" title="RuTube">
+                            <img src="https://cdn.simpleicons.org/rutube/white" alt="RT" width="16" height="16">
+                        </a>
+                        <a href="https://max.ru/id2724018158_gos5" target="_blank" rel="noopener" title="MAX">
+                            <img src="https://cdn.simpleicons.org/maildotru/white" alt="MX" width="16" height="16">
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Навигация</h4>
+                    <ul>
+                        <li><a href="/">Главная</a></li>
+                        <li><a href="/novosti">Новости</a></li>
+                        <li><a href="/abitur">Абитуриенту</a></li>
+                        <li><a href="/studentu">Студенту</a></li>
+                        <li><a href="/biblioteka">Библиотека</a></li>
+                        <li><a href="/centr-karery">Центр карьеры</a></li>
+                        <li><a href="/vakansii">Вакансии</a></li>
+                        <li><a href="/kurs">Доп. образование</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Документы</h4>
+                    <ul>
+                        <li><a href="/sveden">Сведения об организации</a></li>
+                        <li><a href="/sveden/document">Документы</a></li>
+                        <li><a href="/sveden/education">Образование</a></li>
+                        <li><a href="/sveden/employees">Педагогический состав</a></li>
+                        <li><a href="/feedback">Обращение граждан</a></li>
+                        <li><a href="/faq">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Контакты</h4>
+                    <div class="footer-contact-item">
+                        <div class="footer-contact-icon">&#128205;</div>
+                        <div class="footer-contact-text">
+                            <strong>Адрес</strong><br>г. Уссурийск, ул. Тургенева, 3
+                        </div>
+                    </div>
+                    <div class="footer-contact-item">
+                        <div class="footer-contact-icon">&#128222;</div>
+                        <div class="footer-contact-text">
+                            <strong>Приёмная директора</strong><br>
+                            <a href="tel:84234252040">8 (4234) 25-20-40</a>
+                        </div>
+                    </div>
+                    <div class="footer-contact-item">
+                        <div class="footer-contact-icon">&#128241;</div>
+                        <div class="footer-contact-text">
+                            <strong>Приёмная комиссия</strong><br>
+                            <a href="tel:89242569225">8-924-256-92-25</a><br>
+                            <a href="tel:84234249305">8-4234-24-93-05</a><br>
+                            <a href="tel:89242469304">8-924-246-93-04</a>
+                        </div>
+                    </div>
+                    <div class="footer-contact-item">
+                        <div class="footer-contact-icon">&#9993;</div>
+                        <div class="footer-contact-text">
+                            <strong>Email</strong><br>
+                            <a href="mailto:info@primizt.ru">info@primizt.ru</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span class="footer-bottom-text">&copy; 2025 Приморский институт железнодорожного транспорта</span>
+                <div class="footer-bottom-links">
+                    <a href="/?template=accessibility">Версия для слабовидящих</a>
+                    <a href="/sveden">Сведения об организации</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <button class="scroll-top" id="scrollTopBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">&#8593;</button>
+
+    <script>
+        const scrollTopBtn = document.getElementById('scrollTopBtn');
+        window.addEventListener('scroll', () => {
+            scrollTopBtn.classList.toggle('visible', window.scrollY > 400);
+        });
+
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileNav = document.getElementById('mobileNav');
+        const mobileOverlay = document.getElementById('mobileOverlay');
+        const mobileNavClose = document.getElementById('mobileNavClose');
+
+        function openMenu() {
+            mobileNav.classList.add('open');
+            mobileOverlay.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeMenu() {
+            mobileNav.classList.remove('open');
+            mobileOverlay.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        mobileMenuBtn.addEventListener('click', openMenu);
+        mobileNavClose.addEventListener('click', closeMenu);
+        mobileOverlay.addEventListener('click', closeMenu);
+        document.querySelectorAll('.mobile-nav-links a:not(.section-label)').forEach(l => l.addEventListener('click', closeMenu));
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, i) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }, i * 50);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+
+        document.querySelectorAll('.news-card, .program-card, .advantage-card, .stat-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(el);
+        });
+    </script>
+
+    <script type="text/javascript">
+        (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+        (window,document,"script","https://mc.yandex.ru/metrika/tag.js","ym");
+        ym(96143696,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true,webvisor:true});
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/96143696" style="position:absolute;left:-9999px;" alt=""/></div></noscript>
+</body>
+</html>
