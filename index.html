@@ -520,7 +520,7 @@
 
         .mobile-nav-cta a {
             display: block;
-            background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: white;
             text-align: center;
             padding: 14px 24px;
@@ -530,10 +530,12 @@
             text-transform: uppercase;
             letter-spacing: 0.05em;
             border: none;
+            box-shadow: 0 4px 15px rgba(14,116,92,0.35);
         }
 
         .mobile-nav-contacts {
             padding: 20px 24px;
+            padding-bottom: calc(20px + env(safe-area-inset-bottom, 24px));
             background: var(--light-grey);
             border-top: 1px solid var(--border);
         }
@@ -1536,6 +1538,13 @@
             .logo-divider { height: 30px; }
             .ticker-label { display: none; }
         }
+        .mobile-nav {
+            padding-bottom: env(safe-area-inset-bottom, 0px);
+        }
+
+        .mobile-social {
+            margin-bottom: 16px;
+        }
     </style>
 </head>
 <body>
@@ -1708,6 +1717,9 @@
                 </a>
                 <a href="https://rutube.ru/channel/29105887/" target="_blank" rel="noopener" title="RT">
                     <img src="https://raw.githubusercontent.com/aleson2021/primizt/main/rutube.svg"alt="RT" width="16" height="16">
+                </a>
+                <a href="https://max.ru/id2724018158_gos5" target="_blank" rel="noopener" title="MAX">
+    <img src="https://raw.githubusercontent.com/aleson2021/primizt/main/max.svg" alt="MX" width="16" height="16">
                 </a>
             </div>
         </div>
