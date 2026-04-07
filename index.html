@@ -525,8 +525,8 @@
         .hero-loco-left {
 			position: absolute;
 			left: -100px;
-			bottom: 10%;          /* чуть поднять над нижним краем */
-			height: 95%;          /* немного крупнее */
+			bottom: 10%;
+			height: 95%;
 			width: auto;
 			max-width: 560px;
 			object-fit: contain;
@@ -534,11 +534,9 @@
 			opacity: 0.85;
 			pointer-events: none;
 			user-select: none;
-			/* scaleX(-1) убран — без зеркала */
 			z-index: 1;
 		}
 
-        /* только десктоп — на планшетах и телефонах скрываем */
         @media (max-width: 1200px) {
             .hero-loco-left {
                 display: none;
@@ -557,7 +555,7 @@
 		}
 		@media (min-width: 1200px) {
 			.hero .container {
-				padding-left: 320px;   /* ← вот этим двигаем вправо, освобождая место поезду */
+				padding-left: 320px;
 			}
 		}
 
@@ -727,6 +725,12 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            color: white;
+            transition: var(--transition);
+        }
+        .ticker-item:hover {
+            opacity: 0.8;
+            text-decoration: underline;
         }
         .ticker-item::before {
             content: '●';
@@ -787,6 +791,7 @@
             display: flex;
             flex-direction: column;
             transition: var(--transition);
+            position: relative;
         }
         .news-card:hover {
             transform: translateY(-6px);
@@ -907,6 +912,22 @@
         .btn-all-news:hover {
             background: var(--primary-light);
             transform: translateY(-2px);
+        }
+
+        /* Карточка новости — кликабельная ссылка поверх */
+        .news-card .card-link {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+        }
+        .news-card .news-img,
+        .news-card .news-body,
+        .news-card .news-readmore {
+            position: relative;
+            z-index: 2;
+        }
+        .news-readmore {
+            z-index: 3 !important;
         }
 
         /* ══════════ PROGRAMS ══════════ */
@@ -1087,21 +1108,20 @@
 		
 		.cta-loco-right {
 			position: absolute;
-			right: -100px;       /* хвост за правым краем */
+			right: -100px;
 			bottom: 0;
-			height: 110%;        /* чуть больше секции */
+			height: 110%;
 			width: auto;
 			max-width: 580px;
 			object-fit: contain;
 			object-position: left bottom;
-			opacity: 0.85;       /* потемнее фон — opacity поменьше */
+			opacity: 0.85;
 			pointer-events: none;
 			user-select: none;
-			transform: scaleX(-1); /* разворачиваем мордой влево */
+			transform: scaleX(-1);
 			z-index: 0;
 		}
 
-		/* только десктоп */
 		@media (max-width: 1200px) {
 			.cta-loco-right {
 				display: none;
@@ -1380,6 +1400,10 @@
             .logo-divider { height: 30px; }
             .ticker-label { display: none; }
         }
+		.ticker-item {
+		  color: white !important;
+		  text-decoration: none !important;
+		}
     </style>
 </head>
 <body>
@@ -1564,7 +1588,6 @@
     <section class="hero">
         <div class="hero-pattern"></div>
 
-        <!-- Локомотив слева: зеркален, морда смотрит вправо (внутрь) -->
         <img
             src="https://raw.githubusercontent.com/aleson2021/primizt/main/ep20.png"
             alt=""
@@ -1614,14 +1637,15 @@
                 <span class="ticker-label">Объявления</span>
                 <div class="ticker-track">
                     <div class="ticker-content">
-                        <span class="ticker-item">Экскурсии для школьников — запись открыта</span>
-                        <span class="ticker-item">Итоги городских олимпиад по математике и физике (2026)</span>
-                        <span class="ticker-item">Региональный этап «Профессионалы-2026» на площадках ПримИЖТ</span>
-                        <span class="ticker-item">Приёмная комиссия работает ежедневно с 9:00 до 17:00</span>
-                        <span class="ticker-item">Экскурсии для школьников — запись открыта</span>
-                        <span class="ticker-item">Итоги городских олимпиад по математике и физике (2026)</span>
-                        <span class="ticker-item">Региональный этап «Профессионалы-2026» на площадках ПримИЖТ</span>
-                        <span class="ticker-item">Приёмная комиссия работает ежедневно с 9:00 до 17:00</span>
+                        <a href="/component/k2/item/424-1241" class="ticker-item">Экскурсии для школьников — запись открыта</a>
+                        <a href="/component/k2/item/621-1832" class="ticker-item">Итоги городских олимпиад по математике и физике (2026)</a>
+                        <a href="/component/k2/item/619-1821-1" class="ticker-item">Региональный этап «Профессионалы-2026» на площадках ПримИЖТ</a>
+                        <a href="/abitur" class="ticker-item">Приёмная комиссия работает ежедневно с 9:00 до 17:00</a>
+                        <!-- Дублируем для бесконечной прокрутки -->
+                        <a href="/component/k2/item/424-1241" class="ticker-item">Экскурсии для школьников — запись открыта</a>
+                        <a href="/component/k2/item/621-1832" class="ticker-item">Итоги городских олимпиад по математике и физике (2026)</a>
+                        <a href="/component/k2/item/619-1821-1" class="ticker-item">Региональный этап «Профессионалы-2026» на площадках ПримИЖТ</a>
+                        <a href="/abitur" class="ticker-item">Приёмная комиссия работает ежедневно с 9:00 до 17:00</a>
                     </div>
                 </div>
             </div>
@@ -2018,7 +2042,22 @@
             el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
             observer.observe(el);
         });
-    </script>
+		</script>
+		<script>
+		// Надёжный клик по карточкам (делегирование на .news-grid)
+		document.querySelector('.news-grid').addEventListener('click', function(e) {
+		  const card = e.target.closest('.news-card');
+		  if (!card) return;
+		  
+		  const link = card.querySelector('.news-readmore');
+		  if (!link) return;
+		  
+		  // Если кликнули по самой ссылке "Читать далее" — пусть работает нативно
+		  if (e.target.closest('.news-readmore')) return;
+		  
+		  window.location.href = link.href;
+		});
+		</script>
 
     <script type="text/javascript">
         (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
